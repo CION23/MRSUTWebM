@@ -1,5 +1,6 @@
 ﻿using eUseControl.BusinessLogic.Core;
 using eUseControl.BusinessLogic.Interfaces;
+using eUseControl.Domain.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,9 @@ namespace eUseControl.BusinessLogic
 {
      public class SessionBL : UserApi, ISession
      {
+          public UserLogin UserLogin(ULoginData data)
+          {
+               return UserLogin(data);
+          }
      }
 }
