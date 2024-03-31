@@ -1,0 +1,11 @@
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\bin\Debug\eUseControl.BusinessLogic.dll
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\bin\Debug\eUseControl.BusinessLogic.pdb
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\bin\Debug\eUseControl.Domain.dll
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\bin\Debug\eUseControl.Helpers.dll
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\bin\Debug\eUseControl.Domain.pdb
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\bin\Debug\eUseControl.Helpers.pdb
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\obj\Debug\eUseCont.F912DA32.Up2Date
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.dll
+C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.pdb
