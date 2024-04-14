@@ -1,6 +1,7 @@
 ﻿using eUseControl.BusinessLogic;
 using eUseControl.BusinessLogic.Interfaces;
 using eUseControl.Domain.Entities.User;
+using eUseControl.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,14 @@ namespace eUseControl.Controllers
                _session = bl.GetSessionBL();
           }
 
+          public ActionResult Login()
+          {
+               return View();
+          }
+
           [HttpPost]
           [ValidateAntiForgeryToken]
-          public ActionResult Index(UserLogin login)
+          public ActionResult Login(UserLogin login)
           {
                if (ModelState.IsValid)
                {
@@ -41,7 +47,7 @@ namespace eUseControl.Controllers
                     {
                          //ADD CO)KIE
 
-                         return RedirectToAction("Home", "Home");
+                         return RedirectToAction("Login", "Login");
                     }
                     else
                     {

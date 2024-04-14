@@ -13,5 +13,15 @@ namespace eUseControl.Controllers
         {
             return View();
         }
-    }
+          public ActionResult Search()
+          {
+               return View();
+          }
+
+          public ActionResult Register()
+          {
+               return View();
+          }
+          
+     }
 }

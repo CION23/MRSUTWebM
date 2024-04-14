@@ -9,6 +9,6 @@ namespace eUseControl.BusinessLogic.Interfaces
 {
      public interface ISession
      {
-          UserLogin UserLogin(ULoginData data);
+          ULoginResp UserLogin(ULoginData data);
      }
 }
