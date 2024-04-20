@@ -134,7 +134,7 @@
     <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\regular.css" />
     <Content Include="Content\regular.min.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\MainCSS\Site.css" />
     <Content Include="Content\solid.css" />
     <Content Include="Content\solid.min.css" />
     <Content Include="Content\svg-with-js.css" />
@@ -225,7 +225,7 @@
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoUser.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -273,7 +273,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\LogOn.cshtml" />
+    <Content Include="Views\Shared\_HeaderNoUser.cshtml" />
+    <Content Include="Views\Shared\_HeaderWithUser.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithUser.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -297,6 +301,7 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Scripts\MainJS\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\eUseControl.BusinessLogic\eUseControl.BusinessLogic.csproj">

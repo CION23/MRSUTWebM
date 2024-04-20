@@ -4,109 +4,69 @@
      ViewBag.Title = "Home";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-     @Styles.Render("~/bundles/bootstrap/css")
-     @Styles.Render("~/bundles/Site/css")
-     @Styles.Render("~/bundles/fontawesome/css")
-
-     <title>MSphere - Your Music World</title>
-</head>
-<body>
-     <!-- NavBar -->
-     <header id="navbar">
-          <nav class="navbar fixed-top navbar-expand-lg">
-               <div class="container-fluid">
-                    <!-- Left side: Home and Search -->
-                    <a class="navbar-brand" aria-current="page" target="_blank" href="MSphere.html">MSphere</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                         <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                         <ul class="navbar-nav me-auto">
-                              <li class="nav-item">
-                                   <a class="nav-link" aria-current="page" href="/Home"<i class="fas fa-home"></i> Home</a>
-                              </li>
-
-                              <li id="search-link" class="nav-item">
-                                   <a class="nav-link" href="#"><i class="fas fa-search"></i> Search</a>
-                              </li>
-                         </ul>
-                    </div>
-
-                    <!-- Right side: Register and Login -->
-                    <div>
-                         <ul class="navbar-nav ms-auto">
-                              <li class="nav-item">
-                                   @Html.ActionLink("Register", "Register", "Home")
-                              </li>
-                              <li class="nav-home">
-                                   @Html.ActionLink("Log In", "Login", "Login")
-                              </li>
-                         </ul>
+<main>
+     <section class="browse-all">
+          <div id="search-bar" class="row justify-content-end" style="display: none;">
+               <div class="col-auto">
+                    <div class="d-flex justify-content-end">
+                         <!-- Use d-flex and justify-content-end to align the form to the right -->
+                         <form class="d-flex" role="search">
+                              <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" />
+                         </form>
                     </div>
                </div>
-          </nav>
-     </header>
+          </div>
 
-     <main>
-          <section class="browse-all">
-               <div id="search-bar" class="row justify-content-end" style="display: none;">
-                    <div class="col-auto">
-                         <div class="d-flex justify-content-end">
-                              <!-- Use d-flex and justify-content-end to align the form to the right -->
-                              <form class="d-flex" role="search">
-                                   <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" />
-                              </form>
-                         </div>
-                    </div>
+          <h2 style="color:white">Browse all</h2>
+          <div class="album-container">
+               <div class="album-card">
+                    <h3>Rock</h3>
                </div>
-
-               <h2 style="color:white">Browse all</h2>
-               <div class="album-container">
-                    <div class="album-card">
-                         <h3>Rock</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>Pop</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>Hip-Hop</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>Mood</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>Workout</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>Discover</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>Party</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>At Home</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>Sleep</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>Chill</h3>
-                    </div>
-                    <div class="album-card">
-                         <h3>K-pop</h3>
-                    </div>
-                    <!-- Album cards will be dynamically generated here -->
+               <div class="album-card">
+                    <h3>Pop</h3>
                </div>
-               <!-- Add more album cards here -->
-          </section>
-     </main>
-
-     @Scripts.Render("~/bundles/bootstrap/js")
-</body>
-</html>
+               <div class="album-card">
+                    <h3>Hip-Hop</h3>
+               </div>
+               <div class="album-card">
+                    <h3>Mood</h3>
+               </div>
+               <div class="album-card">
+                    <h3>Workout</h3>
+               </div>
+               <div class="album-card">
+                    <h3>Discover</h3>
+               </div>
+               <div class="album-card">
+                    <h3>Party</h3>
+               </div>
+               <div class="album-card">
+                    <h3>At Home</h3>
+               </div>
+               <div class="album-card">
+                    <h3>Sleep</h3>
+               </div>
+               <div class="album-card">
+                    <h3>Chill</h3>
+               </div>
+               <div class="album-card">
+                    <h3>K-pop</h3>
+               </div>
+               <div class="album-card">
+                    <h3></h3>
+               </div>
+               <div class="album-card">
+                    <h3></h3>
+               </div>
+               <div class="album-card">
+                    <h3></h3>
+               </div>
+               <div class="album-card">
+                    <h3></h3>
+               </div>
+               <!-- Album cards will be dynamically generated here -->
+          </div>
+          <!-- Add more album cards here -->
+     </section>
+</main>

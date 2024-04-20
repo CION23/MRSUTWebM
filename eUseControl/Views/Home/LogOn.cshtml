@@ -1,9 +1,9 @@
 ﻿@{
-     ViewBag.Title = "Register";
+     ViewBag.Title = "LogOn";
+     Layout = "~/Views/Shared/_LayoutWithUser.cshtml";
 }
 
 <main id="main">
-     <br /><br />
      <section id="terms-and-conditions" class="terms-and-conditions">
           <div class="container-register">
                <h1>Înregistrare</h1>
@@ -16,7 +16,7 @@
 
                <button class="RegisterButton" id="RegisterButton" onclick="registerUser()">Înregistrare</button>
 
-               <p><br />@Html.ActionLink("Aveți deja un cont? Logare", "LogIn", "Home")</p>
+               <p><br />@Html.ActionLink("Aveți deja un cont? Logare", "Login", "Login")</p>
           </div>
      </section>
 </main><!-- End #main -->

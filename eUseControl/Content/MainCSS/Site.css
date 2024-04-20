@@ -13,9 +13,9 @@ textarea {
 }
 
 body {
-     height: 2000px;
+     height: 1000px;
      background-color: black;
-     padding-top: 72px;
+     padding-top: 68px;
 }
 
 .navbar {
@@ -25,25 +25,26 @@ body {
      overflow: hidden;
 }
 
+
 .navbar-brand {
      font-family: 'Arial', sans-serif;
      font-size: 24px;
-     color: #9da1ab;
+     color: #B2B8C5;
 }
 
-.navbar-nav .nav-link .nav-home {
+.navbar-nav .nav-link{
      font-family: 'Arial', sans-serif;
      font-size: 18px;
      color: #668778;
 }
 
-     .navbar-brand:hover {
+.navbar-brand:hover {
      color: #668778;
-     }
+}
 
-     .navbar-nav .nav-link:hover {
+.navbar-nav .nav-link:hover {
      color: #B2B8C5;
-     }
+}
 
 main {
      padding: 20px;
@@ -51,14 +52,6 @@ main {
      margin-right: 10px;
      background-color: #141414; /* Darkened background */
      border-radius: 5px; /* Added border-radius */
-}
-
-h2, h3 {
-     margin-top: 0;
-}
-
-p {
-     margin-bottom: 10px;
 }
 
 .album-card {
@@ -80,10 +73,4 @@ p {
 
 .browse-all {
      padding: 20px;
-}
-
-/*search*/
-#search-bar {
-     display: none;
-     border-radius: 20px;
 }

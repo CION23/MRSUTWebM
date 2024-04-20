@@ -18,7 +18,7 @@ namespace eUseControl.Controllers
                return View();
           }
 
-          public ActionResult Register()
+          public ActionResult LogOn()
           {
                return View();
           }

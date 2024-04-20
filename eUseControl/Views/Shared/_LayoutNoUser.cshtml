@@ -1,0 +1,38 @@
+﻿﻿@using System.Web.Optimization;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title>MSphere - Your Music World</title>
+
+     <!-- Vendor CSS Files -->
+     @Styles.Render("~/bundles/bootstrap/css")
+     @Styles.Render("~/bundles/fontawesome/css")
+     @Styles.Render("~/bundles/animate/css")
+
+     @if (IsSectionDefined("Styles"))
+     {@RenderSection("Styles", required: false)}
+
+     <!-- Template Main CSS File -->
+     @Styles.Render("~/bundles/Site/css")
+</head>
+<body>
+     @Html.Partial("_HeaderNoUser")
+
+     <div>
+          @RenderBody()
+     </div>
+
+     @Html.Partial("_Footer")
+
+     <!-- Vendor JS Files -->
+     @Scripts.Render("~/bundles/bootstrap/js")
+
+     <!-- Template Main JS File -->
+
+     @RenderSection("Scripts", required: false)
+</body>
+</html>
