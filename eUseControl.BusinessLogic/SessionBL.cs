@@ -1,7 +1,7 @@
 ﻿using eUseControl.BusinessLogic.Core;
 using eUseControl.BusinessLogic.Interfaces;
 using eUseControl.Domain.Entities.User;
-using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +15,14 @@ namespace eUseControl.BusinessLogic
           {
                return UserLoginAction(data);
           }
+          /*public HttpCookie GenCookie(string loginCredential)
+          {
+               return Cookie(loginCredential);
+          }
+
+          public UserMinimal GetUserByCookie(string apiCookieValue)
+          {
+               return UserCookie(apiCookieValue);
+          }*/
      }
 }

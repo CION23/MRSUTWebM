@@ -1,8 +1,11 @@
-﻿using System;
+﻿using eUseControl.BusinessLogic.Logic;
+using eUseControl.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace eUseControl.Controllers
 {
@@ -18,10 +21,26 @@ namespace eUseControl.Controllers
                return View();
           }
 
-          public ActionResult LogOn()
+          public ActionResult SignUp()
           {
                return View();
           }
-          
+
+          [HttpPost]
+          [ValidateAntiForgeryToken]
+          public ActionResult SignUp(UserSignUp model)
+          {
+               if (ModelState.IsValid)
+               {
+                    int recordsCreate = UserProcessor.CreateUser(model.FirstName, 
+                         model.LastName, 
+                         model.EmailAddress, 
+                         model.Password);
+                    return RedirectToAction("Home", "Home");
+               }
+
+               return View();
+          }
+
      }
 }

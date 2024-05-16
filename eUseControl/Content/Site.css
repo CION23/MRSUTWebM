@@ -1,0 +1,142 @@
+﻿
+/* Set padding to keep content from hitting the edges */
+.body-content {
+     padding-left: 15px;
+     padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+     max-width: 280px;
+}
+
+body {
+     height: 1000px;
+     background-color: black;
+     padding-top: 68px;
+}
+
+.navbar {
+     background-color: #141414;
+     border-bottom-left-radius: 15px;
+     border-bottom-right-radius: 15px;
+     overflow: hidden;
+}
+
+
+.navbar-brand {
+     font-family: 'Arial', sans-serif;
+     font-size: 24px;
+     color: #B2B8C5;
+}
+
+.navbar-nav .nav-link{
+     font-family: 'Arial', sans-serif;
+     font-size: 18px;
+     color: #668778;
+}
+
+.navbar-brand:hover {
+     color: #668778;
+}
+
+.navbar-nav .nav-link:hover {
+     color: #B2B8C5;
+}
+
+main {
+     padding: 20px;
+     margin-left: 10px;
+     margin-right: 10px;
+     background-color: #141414; /* Darkened background */
+     border-radius: 5px; /* Added border-radius */
+}
+
+.album-card {
+     width: 200px;
+     height: 200px;
+     max-height: 100%; /* Ensures the card won't exceed the height of the container */
+     background-color: #313539; /* Darkened background for album cards */
+     color: white; /* Darkened text color */
+     border-radius: 5px;
+     padding: 15px;
+     display: inline-block;
+     margin-right: 20px;
+     margin-bottom: 20px; /* Adds margin at the bottom of the card */
+}
+
+     .album-card:hover {
+          cursor: pointer;
+     }
+
+.browse-all {
+     padding: 20px;
+}
+
+/*///////////////////////////////////////////////////Sign Up Page///////////////////////////////////////////////////*/
+.UserSignUp {
+     background-color: #121212; /* Dark background color */
+     color: #ffffff; /* White text */
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Soft shadow */
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Standard font */
+     /* Center the element */
+     box-sizing: border-box;
+     margin-left: 30%;
+     margin-right: 30%;
+}
+
+     .UserSignUp h2 {
+          color: #ffffff; /* White text for headings */
+          text-align: center; /* Center the "Sign Up" text */
+     }
+
+     .UserSignUp input[type="text"],
+     .UserSignUp input[type="email"],
+     .UserSignUp input[type="password"] {
+          width: 100%;
+          padding: 10px;
+          margin: 10px 0;
+          border: none;
+          border-radius: 5px;
+          background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+          color: #ffffff; /* White text */
+     }
+
+     .UserSignUp input[type="submit"] {
+          width: 100%;
+          padding: 10px;
+          margin-top: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: #ffffff; /* White background */
+          color: #1DB954; /* Green accent color */
+          cursor: pointer;
+          transition: background-color 0.3s, color 0.3s;
+     }
+
+          .UserSignUp input[type="submit"]:hover {
+               background-color: #0f7e31; /* Darker green on hover */
+               color: #ffffff; /* White text on hover */
+          }
+
+          .UserSignUp input[type="submit"]:focus {
+               outline: none; /* Remove focus outline */
+          }
+
+     .UserSignUp .error-message {
+          color: #ff0000; /* Red color for error messages */
+          margin-top: 5px;
+     }
+
+.form-group {
+     display: grid;
+     grid-auto-columns: minmax(min-content, 1fr);
+     align-items: center;
+     /* Added properties */
+     grid-gap: 10px; /* Add spacing between form elements */
+}
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////*/

@@ -12,7 +12,7 @@ namespace eUseControl.App_Start
                          .Include("~/Content/bootstrap.css", new CssRewriteUrlTransform()));
                //home style
                bundles.Add(new StyleBundle("~/bundles/Site/css")
-                         .Include("~/Content/MainCSS/Site.css", new CssRewriteUrlTransform()));
+                         .Include("~/Content/Site.css", new CssRewriteUrlTransform()));
 
                //fontawesome
                bundles.Add(new StyleBundle("~/bundles/fontawesome/css")
