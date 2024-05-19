@@ -1,5 +1,4 @@
 ﻿using eUseControl.BusinessLogic;
-using eUseControl.BusinessLogic.DataAcces;
 using eUseControl.BusinessLogic.Interfaces;
 using eUseControl.Domain.Entities.User;
 using eUseControl.Models;
@@ -14,83 +13,55 @@ using System.Web.Mvc;
 using System.Web.SessionState;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-using Dapper;
 using System.Configuration;
-using eUseControl.BusinessLogic.Logic;
+using eUseControl.BusinessLogic.DBModel;
+using AutoMapper;
 
 namespace eUseControl.Controllers
 {
      public class LoginController : Controller
      {
+          private readonly ISession _session;
+          public LoginController()
+          {
+               var bl = new BussinesLogic();
+               _session = bl.GetSessionBL();
+          }
+
+          // GET: Login
           public ActionResult Login()
           {
                return View();
           }
 
-          public static bool ValidateLogin(UserLogin login)
-          {
-               // SQL query to check if the username and password match
-               string sql = "SELECT COUNT(*) FROM UserMaster WHERE UserName = @Username AND Password = @Password";
-
-               using (var cnn = new SqlConnection(SqlDataAcces.GetConnectionString()))
-               {
-                    int count = cnn.QuerySingleOrDefault<int>(sql, new { Username = login.Credential, Password = login.Password });
-                    return count > 0; // Return true if there's a match
-               }
-          }
-
           [HttpPost]
+          [ValidateAntiForgeryToken]
           public ActionResult Login(UserLogin login)
           {
-               bool isValidLogin = ValidateLogin(login); // Changed from UserProcessor.ValidateLogin(login)
+               if (ModelState.IsValid)
+               {
+                    Mapper.Initialize(cfg => cfg.CreateMap<UserLogin, UserLoginData>());
+                    var data = Mapper.Map<UserLoginData>(login);
 
-               if (isValidLogin)
-               {
-                    // Redirect to the home page or dashboard upon successful login
-                    return RedirectToAction("Index", "Home");
-               }
-               else
-               {
-                    // Invalid credentials, show error message
-                    ViewBag.ErrorMessage = "Invalid username or password.";
-                    return View();
-               }
-
-               /*if (ModelState.IsValid)
-               {
-                    ULoginData data = new ULoginData
-                    {
-                         Credential = login.Credential,
-                         Password = login.Password,
-                         LoginIp = Request.UserHostAddress,
-                         LoginDateTime = DateTime.Now
-                    };
+                    data.LoginIp = Request.UserHostAddress;
+                    data.LoginDateTime = DateTime.Now;
 
                     var userLogin = _session.UserLogin(data);
-                    if(userLogin.Status)
+                    if (userLogin.Status)
                     {
-                         //HttpCookie cookie = _session.GenCookie(login.Credential);
-                         //ControllerContext.HttpContext.Response.Cookies.Add(cookie);
-                         return RedirectToAction("Login", "Login");
+                         HttpCookie cookie = _session.GenCookie(login.Credential);
+                         ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+
+                         return RedirectToAction("Home", "Home");
                     }
                     else
                     {
                          ModelState.AddModelError("", userLogin.StatusMsg);
                          return View();
                     }
-               }*/
-          }
+               }
 
-          public ActionResult LogOut()
-          {
                return View();
-          }
-
-          private readonly ISession _session;
-          public LoginController()
-          {
-               var bl = new BussinesLogic();
-               _session = bl.GetSessionBL();
           }
      }
 }

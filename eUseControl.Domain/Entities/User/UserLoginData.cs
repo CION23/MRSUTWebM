@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eUseControl.Domain.Entities.User
 {
-     public class ULoginData
+     public class UserLoginData
      {
           public string Credential {  get; set; }
           public string Password { get; set; }
