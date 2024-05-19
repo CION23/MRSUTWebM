@@ -14,10 +14,15 @@ namespace eUseControl.Domain.Entities.User
           [Key]
           [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
           public int UserId { get; set; }
+          [Required]
           public string FirstName { get; set; }
+          [Required]
           public string LastName { get; set; }
+          [Required]
           public string UserName { get; set; }
+          [Required]
           public string EmailAddress { get; set; }
+          [Required]
           public string Password { get; set; }
 
           [DataType(DataType.Date)]
