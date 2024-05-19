@@ -19,11 +19,11 @@ namespace eUseControl.App_Start
                          .Include("~/Content/all.css", new CssRewriteUrlTransform()));
 
                //bootstrap js
-               bundles.Add(new ScriptBundle("~/bundles/bootstrap/js")
-                         .Include("~/Scripts/bootstrap.js"));
+               bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js"));
 
-               //jquery
-               bundles.Add(new ScriptBundle("~/bundles/bootstrap/js")
+               //jquery js
+               bundles.Add(new ScriptBundle("~/bundles/Jquery/js")
                          .Include("~/Scripts/jquery{version}.js"));
 
                // Animate.css

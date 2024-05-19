@@ -280,8 +280,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Shared\_HeaderNoUser.cshtml" />
-    <Content Include="Views\Shared\_HeaderWithUser.cshtml" />
-    <Content Include="Views\Shared\_LayoutWithUser.cshtml" />
+    <Content Include="Views\Shared\_HeaderNo.cshtml" />
+    <Content Include="Views\Shared\_LayoutNo.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <None Include="Web.Debug.config">
