@@ -1,5 +1,6 @@
 ﻿using eUseControl.BusinessLogic;
 using eUseControl.BusinessLogic.Interfaces;
+using eUseControl.Domain.Enums;
 using eUseControl.Extension;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace eUseControl.Controllers
                     {
                          System.Web.HttpContext.Current.SetMySessionObject(profile);
                          System.Web.HttpContext.Current.Session["LoginStatus"] = "login";
+                         System.Web.HttpContext.Current.Session["UserName"] = profile.Username; // Ensure UserName is set
                     }
                     else
                     {
@@ -41,7 +43,6 @@ namespace eUseControl.Controllers
                                    ControllerContext.HttpContext.Response.Cookies.Add(cookie);
                               }
                          }
-
                          System.Web.HttpContext.Current.Session["LoginStatus"] = "logout";
                     }
                }
@@ -50,7 +51,8 @@ namespace eUseControl.Controllers
                     System.Web.HttpContext.Current.Session["LoginStatus"] = "logout";
                }
           }
-          public void ClearSessionAndCookies()
+     
+     public void ClearSessionAndCookies()
           {
                System.Web.HttpContext.Current.Session.Clear();
                if (ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("X-KEY"))
@@ -62,6 +64,20 @@ namespace eUseControl.Controllers
                          ControllerContext.HttpContext.Response.Cookies.Add(cookie);
                     }
                }
+          }
+
+          public bool IsAdmin()
+          {
+               var apiCookie = Request.Cookies["X-KEY"];
+               if (apiCookie != null)
+               {
+                    var profile = _session.GetUserByCookie(apiCookie.Value);
+                    if (profile != null && profile.Role == URole.Admin)
+                    {
+                         return true;
+                    }
+               }
+               return false;
           }
      }
 }

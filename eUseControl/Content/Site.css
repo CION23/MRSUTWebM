@@ -1,4 +1,46 @@
 ﻿
+/*///////////////////////////////////////////////////Tables from Admin Panel///////////////////////////////////////////////////*/
+/* Style for the table container */
+.TablesControl {
+     padding-top: 80px;
+     padding-left: 250px;
+}
+
+/* Style for the table */
+.table {
+     width: 100%;
+     border-collapse: collapse;
+     background-color: #ccc; /* Gray background color */
+     color: #fff; /* White text color */
+}
+
+     /* Style for table header */
+     .table th {
+          background-color: #555; /* Darker gray for header background */
+          color: #fff; /* White text color */
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+     }
+
+     /* Style for alternating rows */
+     .table tr:nth-child(even) {
+          background-color: #999; /* Lighter gray for alternating rows */
+     }
+
+     /* Style for table cells */
+     .table td {
+          padding: 8px;
+          border-bottom: 1px solid #ddd;
+     }
+
+          /* Style for action links */
+          .table td a {
+               color: #fff; /* White text color for links */
+               text-decoration: none;
+          }
+
+/*///////////////////////////////////////////////////Album Card///////////////////////////////////////////////////*/
 /* Set width on the form input elements since they're 100% wide by default */
 
 .album-card {

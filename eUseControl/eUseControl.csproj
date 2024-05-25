@@ -231,7 +231,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\MainJS\Site.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -352,6 +352,10 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_HeaderAuthentification.cshtml" />
+    <Content Include="Views\Shared\_HeaderAView.cshtml" />
+    <Content Include="Views\Shared\_LayoutAView.cshtml" />
+    <Content Include="Views\Home\Control.cshtml" />
+    <Content Include="Views\Home\AdminDashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -374,6 +378,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\MainJS\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

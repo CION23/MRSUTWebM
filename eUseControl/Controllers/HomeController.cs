@@ -12,12 +12,21 @@ using eUseControl.Domain.Entities;
 using UserSignUp = eUseControl.Models.UserSignUp;
 using AutoMapper;
 using eUseControl.Extension;
+using eUseControl.BusinessLogic.Interfaces;
+using eUseControl.BusinessLogic;
+using System.Web.Management;
 
 
 namespace eUseControl.Controllers
 {
     public class HomeController : BaseController
      {
+          private readonly UserContext _context;
+          public HomeController()
+          {
+               _context = new UserContext();
+          }
+
           public ActionResult Home()
           {
                SessionStatus();
@@ -50,8 +59,8 @@ namespace eUseControl.Controllers
                return RedirectToAction("Home","Home");
           }
 
-          [HttpPost]
           [ValidateAntiForgeryToken]
+          [HttpPost]
           public ActionResult SignUp(UserSignUp model)
           {
                if (ModelState.IsValid)
@@ -90,5 +99,86 @@ namespace eUseControl.Controllers
                }
                return View(model);
           }
-     }
+
+          public ActionResult AdminDashboard()
+          {
+               if (IsAdmin())
+               {
+                    return View();
+               }
+               else
+               {
+                    return RedirectToAction("Home", "Home");
+               }
+          }
+
+          public ActionResult Control()
+          {
+               if (IsAdmin())
+               {
+                    IEnumerable<eUseControl.Domain.Entities.User.UserSignUp> users;
+                    using (var context = new UserContext())
+                    {
+                         users = context.Users.ToList();
+                    }
+
+                    return View(users);
+               }
+               else
+               {
+                    return RedirectToAction("Home", "Home");
+               }
+               
+          }
+
+          [HttpPost]
+          public ActionResult Modify(int userId, string firstName, string lastName, string userName, string emailAddress, string password, string ip)
+          {
+               if (IsAdmin())
+               {
+                    var success = UserContext.ModifyUserData(userId, firstName, lastName, userName, emailAddress, password, ip);
+
+                    if (success)
+                    {
+                         return RedirectToAction("Control", "Home");
+                    }
+                    else
+                    {
+                         ViewBag.ErrorMessage = "Failed to modify user.";
+                         var users = _context.LoadUsers();
+                         return View("Control", users);
+                    }
+               }
+               else
+               {
+                    return RedirectToAction("Home","Home");
+               }
+          }
+
+          [HttpPost]
+          public ActionResult Delete(int userId)
+          {
+               if (IsAdmin())
+               {
+                    bool deletionSuccess = UserContext.DeleteUser(userId);
+
+                    if (deletionSuccess)
+                    {
+                         return RedirectToAction("Control", "Home");
+                    }
+                    else
+                    {
+                         ViewBag.ErrorMessage = "Failed to Delete user.";
+                         var userContext = new UserContext();
+                         var users = userContext.LoadUsers();
+                         return View("Control", users);
+                    }
+               }
+               else
+               {
+                    return RedirectToAction("Home","Home");
+               }
+               
+          }
+    }
 }

@@ -20,7 +20,7 @@ namespace eUseControl.App_Start
 
                //Main js
                bundles.Add(new ScriptBundle("~/bundles/Main/js").Include(
-                   "~/Scripts/MainJS/Site.js"));
+                   "~/Scripts/Site.js"));
 
                // Add Bootstrap JS
                bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(

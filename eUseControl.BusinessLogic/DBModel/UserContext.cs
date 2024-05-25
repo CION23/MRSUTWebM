@@ -57,6 +57,69 @@ namespace eUseControl.BusinessLogic.DBModel
                }
           }
 
+          public static bool DeleteUser(int userId)
+          {
+               using (var context = new UserContext())
+               {
+                    var userToDelete = context.Users.Find(userId);
+
+                    if (userToDelete != null)
+                    {
+                         context.Users.Remove(userToDelete);
+                         context.SaveChanges();
+                         return true; // Deletion successful
+                    }
+
+                    return false; // User not found or deletion failed
+               }
+          }
+
+          public static bool ModifyUserData(int userId, string firstName, string lastName, string userName, string emailAddress, string password, string ip)
+          {
+               using (var context = new UserContext())
+               {
+                    var userToModify = context.Users.Find(userId);
+
+                    if (userToModify != null)
+                    {
+                         if (!string.IsNullOrEmpty(firstName))
+                         {
+                              userToModify.FirstName = firstName;
+                         }
+
+                         if (!string.IsNullOrEmpty(lastName))
+                         {
+                              userToModify.LastName = lastName;
+                         }
+
+                         if (!string.IsNullOrEmpty(userName))
+                         {
+                              userToModify.UserName = userName;
+                         }
+
+                         if (!string.IsNullOrEmpty(emailAddress))
+                         {
+                              userToModify.EmailAddress = emailAddress;
+                         }
+
+                         if (!string.IsNullOrEmpty(password))
+                         {
+                              userToModify.Password = password;
+                         }
+
+                         if (!string.IsNullOrEmpty(ip))
+                         {
+                              userToModify.LoginIp = ip;
+                         }
+
+                         context.SaveChanges();
+                         return true; // Modification successful
+                    }
+
+                    return false; // User not found or modification failed
+               }
+          }
+
 
      }
 }

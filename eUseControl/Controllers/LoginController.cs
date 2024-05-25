@@ -19,7 +19,7 @@ using AutoMapper;
 
 namespace eUseControl.Controllers
 {
-     public class LoginController : Controller
+     public class LoginController : BaseController
      {
           private readonly ISession _session;
           public LoginController()
@@ -52,7 +52,14 @@ namespace eUseControl.Controllers
                          HttpCookie cookie = _session.GenCookie(login.Credential);
                          ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
-                         return RedirectToAction("Home", "Home");
+                         if (IsAdmin())
+                         {
+                              return RedirectToAction("AdminDashboard", "Home");
+                         }
+                         else
+                         {
+                              return RedirectToAction("Home", "Home");
+                         }
                     }
                     else
                     {
@@ -63,5 +70,6 @@ namespace eUseControl.Controllers
 
                return View();
           }
+
      }
 }
