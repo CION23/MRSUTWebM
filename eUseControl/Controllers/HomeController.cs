@@ -55,8 +55,25 @@ namespace eUseControl.Controllers
 
           public ActionResult LogOut()
           {
-               ClearSessionAndCookies();
-               return RedirectToAction("Home","Home");
+               var apiCookie = Request.Cookies["X-KEY"];
+               if (apiCookie != null)
+               {
+                    using (var db = new SessionContext())
+                    {
+                         var session = db.Sessions.FirstOrDefault(s => s.CookieString == apiCookie.Value);
+                         if (session != null)
+                         {
+                              db.Sessions.Remove(session);
+                              db.SaveChanges();
+                         }
+                    }
+                    System.Web.HttpContext.Current.Session.Clear();
+                    System.Web.HttpContext.Current.Session["LoginStatus"] = "logout";
+
+                    apiCookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(apiCookie);
+               }
+               return RedirectToAction("Home", "Home");
           }
 
           [ValidateAntiForgeryToken]
