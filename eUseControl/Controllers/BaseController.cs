@@ -56,16 +56,7 @@ namespace eUseControl.Controllers
 
           public bool IsAdmin()
           {
-               var apiCookie = Request.Cookies["X-KEY"];
-               if (apiCookie != null)
-               {
-                    var profile = _session.GetUserByCookie(apiCookie.Value);
-                    if (profile != null && profile.Role == URole.Admin)
-                    {
-                         return true;
-                    }
-               }
-               return false;
+               return AuthorizationHelper.IsAdmin(_session);
           }
      }
 }

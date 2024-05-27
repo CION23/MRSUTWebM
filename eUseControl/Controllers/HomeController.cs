@@ -15,6 +15,7 @@ using eUseControl.Extension;
 using eUseControl.BusinessLogic.Interfaces;
 using eUseControl.BusinessLogic;
 using System.Web.Management;
+using eUseControl.Attributes;
 
 
 namespace eUseControl.Controllers
@@ -117,85 +118,61 @@ namespace eUseControl.Controllers
                return View(model);
           }
 
+          [Admin]
           public ActionResult AdminDashboard()
           {
-               if (IsAdmin())
-               {
-                    return View();
-               }
-               else
-               {
-                    return RedirectToAction("Home", "Home");
-               }
+               return View();
           }
 
+          [Admin]
           public ActionResult Control()
           {
-               if (IsAdmin())
+               IEnumerable<eUseControl.Domain.Entities.User.UserSignUp> users;
+               using (var context = new UserContext())
                {
-                    IEnumerable<eUseControl.Domain.Entities.User.UserSignUp> users;
-                    using (var context = new UserContext())
-                    {
-                         users = context.Users.ToList();
-                    }
+                    users = context.Users.ToList();
+               }
 
-                    return View(users);
-               }
-               else
-               {
-                    return RedirectToAction("Home", "Home");
-               }
-               
+               return View(users);
+
           }
 
+          [Admin]
           [HttpPost]
           public ActionResult Modify(int userId, string firstName, string lastName, string userName, string emailAddress, string password, string ip)
           {
-               if (IsAdmin())
-               {
-                    var success = UserContext.ModifyUserData(userId, firstName, lastName, userName, emailAddress, password, ip);
+               var success = UserContext.ModifyUserData(userId, firstName, lastName, userName, emailAddress, password, ip);
 
-                    if (success)
-                    {
-                         return RedirectToAction("Control", "Home");
-                    }
-                    else
-                    {
-                         ViewBag.ErrorMessage = "Failed to modify user.";
-                         var users = _context.LoadUsers();
-                         return View("Control", users);
-                    }
+               if (success)
+               {
+                    return RedirectToAction("Control", "Home");
                }
                else
                {
-                    return RedirectToAction("Home","Home");
+                    ViewBag.ErrorMessage = "Failed to modify user.";
+                    var users = _context.LoadUsers();
+                    return View("Control", users);
                }
           }
 
+          [Admin]
           [HttpPost]
           public ActionResult Delete(int userId)
           {
-               if (IsAdmin())
-               {
-                    bool deletionSuccess = UserContext.DeleteUser(userId);
+               bool deletionSuccess = UserContext.DeleteUser(userId);
 
-                    if (deletionSuccess)
-                    {
-                         return RedirectToAction("Control", "Home");
-                    }
-                    else
-                    {
-                         ViewBag.ErrorMessage = "Failed to Delete user.";
-                         var userContext = new UserContext();
-                         var users = userContext.LoadUsers();
-                         return View("Control", users);
-                    }
+               if (deletionSuccess)
+               {
+                    return RedirectToAction("Control", "Home");
                }
                else
                {
-                    return RedirectToAction("Home","Home");
+                    ViewBag.ErrorMessage = "Failed to Delete user.";
+                    var userContext = new UserContext();
+                    var users = userContext.LoadUsers();
+                    return View("Control", users);
                }
-               
+
           }
     }
 }
