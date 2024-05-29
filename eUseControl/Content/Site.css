@@ -1,5 +1,57 @@
-﻿
-/*///////////////////////////////////////////////////Tables from Admin Panel///////////////////////////////////////////////////*/
+﻿/*///////////////////////////////////////////////////Search style///////////////////////////////////////////////////*/
+.card-title {
+     font-size: 20px;
+     font-weight: bold;
+     color: #ffffff; /* White color for text */
+     margin-bottom: 5px; /* Add some space below the title */
+}
+
+.card-text {
+     font-size: 16px;
+     color: #f1f1f1; /* Light gray color for text */
+     margin-bottom: 10px; /* Add space below the text */
+}
+
+     .card-text.artist {
+          font-size: 14px;
+          color: #f39c12; /* Orange color for artist text */
+          margin-bottom: 5px; /* Add space below the artist text */
+     }
+
+.genres {
+     margin-top: 10px;
+}
+
+.play-button {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     cursor: pointer;
+}
+
+     .play-button i {
+          font-size: 18px;
+     }
+
+.audio-player {
+     display: none; /* Hide the default audio player */
+}
+
+.cool-background-color {
+     background-color: #714955; /* Set the background color to a cool shade */
+     color: black; /* Set text color to black */
+}
+
+.genres-list {
+     display: flex;
+     flex-wrap: wrap;
+}
+
+     .genres-list .col {
+          display: flex;
+          justify-content: center;
+     }
+/*////////////////////////Tables from Admin Panel////////////////////////////////////////////////// /*/
 /* Style for the table container */
 .TablesControl {
      padding-top: 80px;
@@ -41,31 +93,50 @@
           }
 
 /*///////////////////////////////////////////////////Album Card///////////////////////////////////////////////////*/
-/* Set width on the form input elements since they're 100% wide by default */
-
-.album-card {
-     width: 200px;
-     height: 200px;
-     max-height: 100%; /* Ensures the card won't exceed the height of the container */
-     background-color: #313539; /* Darkened background for album cards */
-     color: white; /* Darkened text color */
-     border-radius: 5px;
-     padding: 15px;
-     display: inline-block;
-     margin-top: 35px;
-     margin-right: 20px;
-     margin-bottom: 20px; /* Adds margin at the bottom of the card */
+/* Custom styles for text */
+.card-title {
+     font-size: 20px;
+     font-weight: bold;
+     color: #ffffff; /* White color for text */
+     margin-bottom: 5px; /* Add some space below the title */
 }
 
-     .album-card:hover {
-          cursor: pointer;
+.card-text {
+     font-size: 16px;
+     color: #f1f1f1; /* Light gray color for text */
+     margin-bottom: 10px; /* Add space below the text */
+}
+
+     .card-text.artist {
+          font-size: 14px;
+          color: #f39c12; /* Orange color for artist text */
+          margin-bottom: 5px; /* Add space below the artist text */
      }
 
-.browse-all {
-     padding: 15px;
-     padding-left: 45px;
+/* Other existing styles */
+.genres {
+     margin-top: 10px;
 }
 
+.play-button {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     cursor: pointer;
+}
+
+     .play-button i {
+          font-size: 18px;
+     }
+
+.audio-player {
+     display: none; /* Hide the default audio player */
+}
+
+.cool-background-color {
+     background-color: #714955; /* Set the background color to a cool shade */
+     color: black; /* Set text color to black */
+}
 /*///////////////////////////////////////////////////Header Authentification///////////////////////////////////////////////////*/
 /* Styles for the header and navigation */
 .CustomHeader {
@@ -104,7 +175,7 @@ body {
 }
 
 #content {
-     margin-top: 60px; /* Adjust based on the height of the fixed header */
+     margin-top: 80px; /* Adjust based on the height of the fixed header */
      margin-left: 250px; /* Adjust based on the width of the sidebar */
      padding: 20px;
      width: calc(100% - 270px); /* Adjust width to fit within the layout */

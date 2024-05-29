@@ -1,5 +1,4 @@
-﻿using eUseControl.BusinessLogic.Core;
-using eUseControl.BusinessLogic.DBModel;
+﻿using eUseControl.BusinessLogic.DBModel;
 using eUseControl.Domain.Entities.User;
 using eUseControl.Domain.Enums;
 using eUseControl.Models;
@@ -16,37 +15,146 @@ using eUseControl.BusinessLogic.Interfaces;
 using eUseControl.BusinessLogic;
 using System.Web.Management;
 using eUseControl.Attributes;
+using eUseControl.Domain.Entities.Music;
+using System.Runtime.Remoting.Messaging;
+using System.Data.Entity;
 
 
 namespace eUseControl.Controllers
 {
-    public class HomeController : BaseController
+     public class HomeController : BaseController
      {
           private readonly UserContext _context;
+          private readonly MusicContext _musiccontext;
+
           public HomeController()
           {
                _context = new UserContext();
+               _musiccontext = new MusicContext();
           }
-
           public ActionResult Home()
           {
                SessionStatus();
                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
                {
                     var user = System.Web.HttpContext.Current.GetMySessionObject();
-                    UserData u = new UserData
+                    UserData userData = new UserData
                     {
                          Username = user.Username,
                     };
 
-                    return View(u);
+                    // Fetch music data in random order and limit to 123 items
+                    var musicList = _musiccontext.Musics
+                                                 .Include("Genres")
+                                                 .Include("UserSignUp")
+                                                 .ToList()
+                                                 .OrderBy(m => Guid.NewGuid())
+                                                 .Take(8)
+                                                 .ToList();
+
+                    foreach (var music in musicList)
+                    {
+                         var artist = _context.Users.FirstOrDefault(u => u.UserId == music.UserSignUpId);
+                         if (artist != null)
+                         {
+                              music.UserSignUp = artist;
+                         }
+                    }
+
+                    ViewBag.MusicList = musicList;
+
+                    return View(userData);
                }
-               return View();
+               else
+               {
+                    // Fetch music data in random order and limit to 123 items
+                    var musicList = _musiccontext.Musics
+                                                 .Include("Genres")
+                                                 .Include("UserSignUp")
+                                                 .ToList()
+                                                 .OrderBy(m => Guid.NewGuid())
+                                                 .Take(8)
+                                                 .ToList();
+
+                    foreach (var music in musicList)
+                    {
+                         var artist = _context.Users.FirstOrDefault(u => u.UserId == music.UserSignUpId);
+                         if (artist != null)
+                         {
+                              music.UserSignUp = artist;
+                         }
+                    }
+
+                    ViewBag.MusicList = musicList;
+                    return View();
+               }
           }
 
-          public ActionResult Search()
+          public ActionResult Search(string searchString)
           {
+               using (var musicContext = new MusicContext())
+               using (var userContext = new UserContext())
+               {
+                    var musicsQuery = from music in musicContext.Musics
+                                      where music.Title.Contains(searchString) ||
+                                            music.Genres.Any(g => g.Name.Contains(searchString)) ||
+                                            music.UserSignUp.ArtistName.Contains(searchString)
+                                      select music;
+
+                    var musics = musicsQuery.Include(m => m.Genres)
+                                            .Include(m => m.UserSignUp)
+                                            .ToList();
+
+                    // Fetch artists for each music
+                    foreach (var music in musics)
+                    {
+                         var artist = userContext.Users.FirstOrDefault(u => u.UserId == music.UserSignUpId);
+                         if (artist != null)
+                         {
+                              music.UserSignUp = artist;
+                         }
+                    }
+
+                    var genres = musicContext.Genres.ToList();
+                    if (genres != null)
+                    {
+                         ViewBag.AllGenres = genres;
+                    }
+                    else
+                    {
+                         ViewBag.AllGenres = new List<Genres>();
+                    }
+
+                    return View(musics);
+               }
+          }
+
+          public ActionResult Genres()
+          {
+               var allGenres = _musiccontext.Genres.ToList(); // Fetch all genres from the database
+
+               ViewBag.Genres = allGenres; // Pass all genres to the view
                return View();
+          }
+          public ActionResult MusicByGenre(int genreId)
+          {
+               var filteredMusic = _musiccontext.Musics
+                                                .Include(m => m.Genres)
+                                                .Include(m => m.UserSignUp)
+                                                .Where(m => m.Genres.Any(g => g.GenreId == genreId))
+                                                .ToList();
+
+               ViewBag.GenreName = _musiccontext.Genres.FirstOrDefault(g => g.GenreId == genreId)?.Name;
+
+               // Fetch music list without randomization and include ArtistName
+               var musicList = filteredMusic.Select(m =>
+               {
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
+                    m.UserSignUp = artist;
+                    return m;
+               }).ToList();
+
+               return View("MusicByGenre", musicList); // Pass the music list to the view
           }
 
           public ActionResult SignUp()

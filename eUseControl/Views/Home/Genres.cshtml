@@ -1,0 +1,24 @@
+﻿@model List<eUseControl.Domain.Entities.Music.Musics>
+@{
+     ViewBag.Title = "Genres";
+}
+
+<body id="content">
+     <div class="container">
+          <div class="row">
+               @foreach (var genre in ViewBag.Genres)
+               {
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                         <div class="card">
+                              <div class="card-body cool-background-color">
+                                   <h5 class="card-title">@genre.Name</h5>
+                                   <a href="@Url.Action("MusicByGenre", "Home", new { genreId = genre.GenreId })" class="btn btn-primary mt-2">View Music</a>
+                              </div>
+                         </div>
+                    </div>
+               }
+          </div>
+     </div>
+</body>
+
+

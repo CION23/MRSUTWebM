@@ -47,7 +47,6 @@ namespace eUseControl.BusinessLogic.DBModel
                }
           }
 
-
           public List<UserSignUp> LoadUsers()
           {
                using (var context = new UserContext())

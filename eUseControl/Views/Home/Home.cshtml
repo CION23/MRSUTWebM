@@ -1,75 +1,45 @@
-﻿@using System.Web.Optimization;
+﻿
 
-@{
-     ViewBag.Title = "Home";
-     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-
-<main>
-     <section class="browse-all">
-          <div id="search-bar" class="row justify-content-end" style="display: none;">
-               <div class="col-auto">
-                    <div class="d-flex justify-content-end">
-                         <!-- Use d-flex and justify-content-end to align the form to the right -->
-                         <form class="d-flex" role="search">
-                              <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" />
-                         </form>
+<body id="content">
+     <div class="container">
+          <div class="row">
+               @if (ViewBag.MusicList != null)
+               {
+                    foreach (var music in ViewBag.MusicList)
+                    {
+                         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                              <div class="card position-relative">
+                                   <img src="@music.ImagePath" class="card-img-top" alt="Music Image" style="height: 100%; object-fit: cover;">
+                                   <div class="card-body cool-background-color">
+                                        <h5 class="card-title">@music.Title</h5>
+                                        <p class="card-text">@music.Description</p>
+                                        <p class="card-text artist">Artist: @music.UserSignUp.ArtistName</p>
+                                        <div class="genres">
+                                             @foreach (var genre in music.Genres)
+                                             {
+                                                  <span class="badge badge-secondary">@genre.Name</span>
+                                             }
+                                        </div>
+                                        <div class="audio-controls position-absolute" style="bottom: 10px; right: 10px;">
+                                             <button class="btn btn-primary play-button" data-src="@music.FilePath">
+                                                  <i class="fas fa-play"></i>
+                                             </button>
+                                             <audio class="audio-player" controls>
+                                                  <source src="@music.FilePath" type="audio/mp3">
+                                                  Your browser does not support the audio element.
+                                             </audio>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    }
+               }
+               else
+               {
+                    <div class="col">
+                         <p>No music available.</p>
                     </div>
-               </div>
+               }
           </div>
-
-          <h2 style="color:white">Browse all</h2>
-          <div class="album-container">
-               <div class="album-card">
-                    <h3>Rock</h3>
-               </div>
-               <div class="album-card">
-                    <h3>Pop</h3>
-               </div>
-               <div class="album-card">
-                    <h3>Hip-Hop</h3>
-               </div>
-               <div class="album-card">
-                    <h3>Mood</h3>
-               </div>
-               <div class="album-card">
-                    <h3>Workout</h3>
-               </div>
-               <div class="album-card">
-                    <h3>Discover</h3>
-               </div>
-               <div class="album-card">
-                    <h3>Party</h3>
-               </div>
-               <div class="album-card">
-                    <h3>At Home</h3>
-               </div>
-               <div class="album-card">
-                    <h3>Sleep</h3>
-               </div>
-               <div class="album-card">
-                    <h3>Chill</h3>
-               </div>
-               <div class="album-card">
-                    <h3>K-pop</h3>
-               </div>
-               <div class="album-card">
-                    <h3></h3>
-               </div>
-               <div class="album-card">
-                    <h3></h3>
-               </div>
-               <div class="album-card">
-                    <h3></h3>
-               </div>
-               <div class="album-card">
-                    <h3></h3>
-               </div>
-
-
-               <!-- Album cards will be dynamically generated here -->
-          </div>
-          <!-- Add more album cards here -->
-     </section>
-</main>
+     </div>
+</body>

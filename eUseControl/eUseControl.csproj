@@ -315,14 +315,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Atributes\AdminAttribute.cs" />
+    <Compile Include="Atributes\ArtistAttribute.cs" />
     <Compile Include="Atributes\AuthorizationHelper.cs" />
+    <Compile Include="Atributes\UserAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MusicController.cs" />
     <Compile Include="Extension\HttpContextExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MusicViewModel.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserSignUp.cs" />
@@ -358,6 +362,12 @@
     <Content Include="Views\Shared\_LayoutAView.cshtml" />
     <Content Include="Views\Home\Control.cshtml" />
     <Content Include="Views\Home\AdminDashboard.cshtml" />
+    <Content Include="Views\Music\ModifyMusic.cshtml" />
+    <Content Include="Views\Music\DeleteMusic.cshtml" />
+    <Content Include="Views\Music\ListMusic.cshtml" />
+    <Content Include="Views\Shared\_SearchResults.cshtml" />
+    <Content Include="Views\Home\Genres.cshtml" />
+    <Content Include="Views\Home\MusicByGenre.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -9,7 +9,7 @@ namespace eUseControl.Domain.Entities.User
 {
      public class UserMinimal
      {
-          public int Id { get; set; }
+          public int UserId { get; set; }
           public string Username { get; set; }
           public string EmailAddress { get; set; }
           public DateTime LastLogin { get; set; }
