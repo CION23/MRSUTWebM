@@ -144,15 +144,15 @@ namespace eUseControl.Controllers
 
                ViewBag.GenreName = _musiccontext.Genres.FirstOrDefault(g => g.GenreId == genreId)?.Name;
 
-               // Fetch music list without randomization and include ArtistName
-               var musicList = filteredMusic.Select(m =>
+               foreach (var music in filteredMusic)
                {
-                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
-                    m.UserSignUp = artist;
-                    return m;
-               }).ToList();
-
-               return View("MusicByGenre", musicList); // Pass the music list to the view
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == music.UserSignUpId);
+                    if (artist != null)
+                    {
+                         music.UserSignUp = artist;
+                    }
+               }
+               return View("MusicByGenre", filteredMusic);
           }
 
           public ActionResult SignUp()
@@ -311,16 +311,16 @@ namespace eUseControl.Controllers
           public ActionResult Playlist()
           {
                ViewBag.Genres = _musiccontext.Genres.ToList();
-               ViewBag.Musics = _musiccontext.Musics.ToList(); // Fetch all available music
-               var playlists = _musiccontext.Playlists.Include(p => p.Musics).ToList(); // Include Musics for each Playlist
-               return View(playlists); // Pass the list of playlists to the view
+               ViewBag.Musics = _musiccontext.Musics.ToList();
+               var playlists = _musiccontext.Playlists.Include(p => p.Musics).ToList();
+               return View(playlists);
           }
 
 
           public ActionResult PlaylistDetails(int id)
           {
                var playlist = _musiccontext.Playlists
-                                           .Include(p => p.Musics.Select(m => m.UserSignUp)) // Include associated artists
+                                           .Include(p => p.Musics.Select(m => m.UserSignUp))
                                            .FirstOrDefault(p => p.PlaylistId == id);
 
                if (playlist == null)
@@ -328,18 +328,20 @@ namespace eUseControl.Controllers
                     return HttpNotFound();
                }
 
-
-               var musicList = playlist.Musics.Select(m =>
+               foreach (var music in playlist.Musics)
                {
-                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
-                    m.UserSignUp = artist;
-                    return m;
-               }).ToList();
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == music.UserSignUpId);
+                    if (artist != null)
+                    {
+                         music.UserSignUp = artist;
+                    }
+               }
 
-               ViewBag.MusicList = musicList;
+               ViewBag.MusicList = playlist.Musics;
 
-               return View("PlaylistDetails", playlist); // Pass the playlist to the view
+               return View("PlaylistDetails", playlist);
           }
+
 
           public ActionResult NewMusic()
           {
@@ -349,14 +351,16 @@ namespace eUseControl.Controllers
                    .OrderByDescending(m => m.Created)
                    .ToList();
 
-               var musicList = newestMusics.Select(m =>
+               foreach (var music in newestMusics)
                {
-                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
-                    m.UserSignUp = artist;
-                    return m;
-               }).ToList();
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == music.UserSignUpId);
+                    if (artist != null)
+                    {
+                         music.UserSignUp = artist;
+                    }
+               }
 
-               ViewBag.MusicList = musicList;
+               ViewBag.MusicList = newestMusics;
                return View();
           }
 
@@ -368,15 +372,17 @@ namespace eUseControl.Controllers
                    .Include(m => m.UserSignUp)
                    .OrderByDescending(m => m.Created)
                    .ToList();
-
-               var musicList = newestMusics.Select(m =>
+               
+               foreach (var music in newestMusics)
                {
-                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
-                    m.UserSignUp = artist;
-                    return m;
-               }).ToList();
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == music.UserSignUpId);
+                    if (artist != null)
+                    {
+                         music.UserSignUp = artist;
+                    }
+               }
 
-               ViewBag.MusicList = musicList;
+               ViewBag.MusicList = newestMusics;
 
                // Fetch most played music for each period
                var mostPlayedDaily = _musiccontext.Musics
@@ -487,6 +493,7 @@ namespace eUseControl.Controllers
                if (ModelState.IsValid)
                {
                     string username = (string)System.Web.HttpContext.Current.Session["UserName"];
+
 
                     var user = _context.Users.FirstOrDefault(u => u.UserName == username);
                     if (user != null)
