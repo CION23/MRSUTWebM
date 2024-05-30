@@ -9,3 +9,28 @@ C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.Business
 C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\obj\Debug\eUseCont.F912DA32.Up2Date
 C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.dll
 C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.pdb
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.BusinessLogic.dll.config
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.BusinessLogic.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.BusinessLogic.pdb
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\AutoMapper.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.Domain.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.Helpers.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\TagLibSharp.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.Domain.pdb
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.Domain.dll.config
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.Helpers.pdb
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\eUseControl.Helpers.dll.config
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\AutoMapper.xml
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\TagLibSharp.pdb
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\bin\Debug\TagLibSharp.xml
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.csproj.CopyComplete
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.pdb
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.Migrations.ggg.resources
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.BusinessLogic\obj\Debug\eUseControl.BusinessLogic.csproj.GenerateResource.cache

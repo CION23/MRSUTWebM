@@ -4,3 +4,15 @@ C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.Helpers\
 C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.Helpers\obj\Debug\eUseControl.Helpers.csproj.CoreCompileInputs.cache
 C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.Helpers\obj\Debug\eUseControl.Helpers.dll
 C:\Users\ionce\Desktop\MultiFolder\University\Tweb\MrsutWeb\eUseControl.Helpers\obj\Debug\eUseControl.Helpers.pdb
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\bin\Debug\eUseControl.Helpers.dll.config
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\bin\Debug\eUseControl.Helpers.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\bin\Debug\eUseControl.Helpers.pdb
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\bin\Debug\EntityFramework.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\bin\Debug\EntityFramework.xml
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\obj\Debug\eUseControl.Helpers.csproj.AssemblyReference.cache
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\obj\Debug\eUseControl.Helpers.csproj.CoreCompileInputs.cache
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\obj\Debug\eUseControl.Helpers.csproj.CopyComplete
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\obj\Debug\eUseControl.Helpers.dll
+C:\Users\ChrisstyK\Desktop\Новая папка (2)\MRSUTWebM\eUseControl.Helpers\obj\Debug\eUseControl.Helpers.pdb

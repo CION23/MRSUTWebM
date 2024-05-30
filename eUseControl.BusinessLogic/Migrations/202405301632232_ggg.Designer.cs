@@ -7,13 +7,13 @@ namespace eUseControl.BusinessLogic.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class changes : IMigrationMetadata
+    public sealed partial class ggg : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ggg));
         
         string IMigrationMetadata.Id
         {
-            get { return "202405301117373_changes"; }
+            get { return "202405301632232_ggg"; }
         }
         
         string IMigrationMetadata.Source
