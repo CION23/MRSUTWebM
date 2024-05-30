@@ -1,0 +1,424 @@
+﻿/*///////////////////////////////////////////////////Search style///////////////////////////////////////////////////*/
+.card-title {
+     font-size: 20px;
+     font-weight: bold;
+     color: #ffffff; /* White color for text */
+     margin-bottom: 5px; /* Add some space below the title */
+}
+
+.card-text {
+     font-size: 16px;
+     color: #f1f1f1; /* Light gray color for text */
+     margin-bottom: 10px; /* Add space below the text */
+}
+
+     .card-text.artist {
+          font-size: 14px;
+          color: #f39c12; /* Orange color for artist text */
+          margin-bottom: 5px; /* Add space below the artist text */
+     }
+
+.genres {
+     margin-top: 10px;
+}
+
+.play-button {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     cursor: pointer;
+}
+
+     .play-button i {
+          font-size: 18px;
+     }
+
+.audio-player {
+     display: none; /* Hide the default audio player */
+}
+
+.cool-background-color {
+     background-color: #714955; /* Set the background color to a cool shade */
+     color: black; /* Set text color to black */
+}
+
+.genres-list {
+     display: flex;
+     flex-wrap: wrap;
+}
+
+     .genres-list .col {
+          display: flex;
+          justify-content: center;
+     }
+/*////////////////////////Tables from Admin Panel////////////////////////////////////////////////// /*/
+/* Style for the table container */
+.TablesControl {
+     padding-top: 80px;
+     padding-left: 250px;
+}
+
+/* Style for the table */
+.table {
+     width: 100%;
+     border-collapse: collapse;
+     background-color: #ccc; /* Gray background color */
+     color: #fff; /* White text color */
+}
+
+     /* Style for table header */
+     .table th {
+          background-color: #555; /* Darker gray for header background */
+          color: #fff; /* White text color */
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+     }
+
+     /* Style for alternating rows */
+     .table tr:nth-child(even) {
+          background-color: #999; /* Lighter gray for alternating rows */
+     }
+
+     /* Style for table cells */
+     .table td {
+          padding: 8px;
+          border-bottom: 1px solid #ddd;
+     }
+
+          /* Style for action links */
+          .table td a {
+               color: #fff; /* White text color for links */
+               text-decoration: none;
+          }
+
+/*///////////////////////////////////////////////////Album Card///////////////////////////////////////////////////*/
+/* Custom styles for text */
+.card-title {
+     font-size: 20px;
+     font-weight: bold;
+     color: #ffffff; /* White color for text */
+     margin-bottom: 5px; /* Add some space below the title */
+}
+
+.card-text {
+     font-size: 16px;
+     color: #f1f1f1; /* Light gray color for text */
+     margin-bottom: 10px; /* Add space below the text */
+}
+
+     .card-text.artist {
+          font-size: 14px;
+          color: #f39c12; /* Orange color for artist text */
+          margin-bottom: 5px; /* Add space below the artist text */
+     }
+
+/* Other existing styles */
+.genres {
+     margin-top: 10px;
+}
+
+.play-button {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     cursor: pointer;
+}
+
+     .play-button i {
+          font-size: 18px;
+     }
+
+.audio-player {
+     display: none; /* Hide the default audio player */
+}
+
+.cool-background-color {
+     background-color: #714955; /* Set the background color to a cool shade */
+     color: black; /* Set text color to black */
+}
+/*///////////////////////////////////////////////////Header Authentification///////////////////////////////////////////////////*/
+/* Styles for the header and navigation */
+.CustomHeader {
+     background-color: transparent; /* Set background color for the header */
+     padding-top: 30px; /* Add padding to the header */
+     display: flex;
+     justify-content: center; /* Center content horizontally */
+}
+
+.CustomNav {
+     display: flex;
+     justify-content: space-between; /* Align items in the navigation */
+     color: white; /* Set text color to white */
+}
+
+.navbar-link-MSphere {
+     font-size: 36px; /* Set initial font size */
+     transition: font-size 0.3s ease;
+     color: white;
+     text-decoration: none; /* Remove underline */
+}
+
+     .navbar-link-MSphere:hover {
+          color: forestgreen; /* Change color on hover */
+          text-decoration: none; /* Remove underline on hover */
+     }
+
+/*/////////////////////////////////////////////////// body style ///////////////////////////////////////////////////*/
+body {
+     margin: 0;
+     padding: 0;
+     height: 100vh; /* Use viewport height to fill the screen */
+     display: flex;
+     flex-direction: column;
+     background-color: black;
+}
+
+#content {
+     margin-top: 80px; /* Adjust based on the height of the fixed header */
+     margin-left: 250px; /* Adjust based on the width of the sidebar */
+     padding: 20px;
+     width: calc(100% - 270px); /* Adjust width to fit within the layout */
+     color: white; /* Ensure text color is readable */
+     flex-grow: 1; /* Ensure the content area takes up the remaining space */
+     overflow-y: auto; /* Add scrolling if content overflows */
+}
+
+/*///////////////////////////////////////////////////Left Navbar Header Page///////////////////////////////////////////////////*/
+#navbar {
+     width: 250px;
+     height: 100vh;
+     position: fixed;
+     z-index: 1001;
+     top: 0;
+     left: 0;
+     background-color: #111;
+     color: white;
+     padding-top: 20px;
+}
+
+     #navbar .navbar-brand {
+          color: white;
+          text-align: center;
+          display: block;
+     }
+
+     #navbar .nav-link {
+          color: white;
+     }
+/*///////////////////////////////////////////////////Fixed Top Navbar Header Page///////////////////////////////////////////////////*/
+#fixed-header {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1000;
+     background-color: #111; /* Match the background color of the navbar */
+     color: white; /* Match the text color of the navbar */
+     padding: 10px 20px;
+}
+
+     #fixed-header .navbar-brand {
+          color: white; /* Match the text color of the navbar brand */
+          text-align: center;
+     }
+
+     #fixed-header .navbar-toggler-icon.fa.fa-bars {
+          color: white; /* Match the color of the navbar toggler icon */
+     }
+
+     #fixed-header .navbar-nav {
+          display: flex;
+          align-items: center;
+          list-style: none;
+          margin: 0;
+     }
+
+     #fixed-header .nav-item {
+          margin-left: 10px;
+     }
+
+     #fixed-header .dropdown-menu {
+          background-color: #111; /* Match the background color of the dropdown menu */
+          color: white; /* Match the text color of the dropdown menu items */
+     }
+
+     #fixed-header .dropdown-item {
+          color: white; /* Match the text color of the dropdown items */
+     }
+
+          #fixed-header .dropdown-item:hover {
+               background-color: #333; /* Match the hover background color of the dropdown items */
+          }
+
+/*///////////////////////////////////////////////////Sign Up Page///////////////////////////////////////////////////*/
+/* Container styles */
+.UserSignUp {
+          max-width: 400px;
+          margin: 40px auto; /* Added margin to create space */
+          padding: 40px 20px;
+          background-color: #141414;
+          border-radius: 5px;
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* h2 SignUp Color */
+.SignUpText {
+     color: white;
+     text-align: center; /* Center-align the text */
+     margin-bottom: 20px; /* Added margin below the header */
+}
+
+/* Form styles */
+.form-group {
+     margin-bottom: 20px;
+}
+
+.control-label {
+     font-weight: 600;
+     color: #fff; /* White color for labels */
+}
+
+.form-control {
+     background-color: white; /* Set input background to white */
+     color: #333; /* Set input text color */
+     border-color: #5cb85c; /* Green color for border */
+}
+
+     .form-control:focus {
+          outline: none;
+          border-color: #5cb85c; /* Green color for focus */
+     }
+
+.help-block {
+     display: block;
+     margin-top: 5px;
+     color: #888;
+}
+
+/* Button styles */
+.btn-default {
+     display: block;
+     width: 100%;
+     padding: 10px;
+     background-color: #668778; /* Spotify green */
+     color: #fff;
+     border: none;
+     border-radius: 3px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+     margin-bottom: 20px; /* Added margin below the button */
+}
+
+     .btn-default:hover {
+          background-color: #168f3e; /* Darker green on hover */
+     }
+
+.nav-link-SignUp {
+     display: block;
+     text-align: center;
+     color: white; /* White color for the link */
+     text-decoration: underline; /* Underline style */
+     margin-top: 20px; /* Increased margin between Login button and SignUp link */
+}
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////Log In//////////////////////////////////////////////////*/
+/* Container styles */
+.container-center {
+     max-width: 400px;
+     margin: 40px auto; /* Added margin to create space */
+     padding: 40px 20px;
+     background-color: #141414;
+     border-radius: 5px;
+     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* h2 Login Color */
+.LoginText {
+     color: white;
+     text-align: center; /* Center-align the text */
+     margin-bottom: 20px; /* Added margin below the header */
+}
+
+/* Form styles */
+.form-group {
+     margin-bottom: 20px;
+}
+
+.control-label {
+     font-weight: 600;
+}
+
+.form-control {
+     background-color: white; /* Set input background to white */
+     color: #333; /* Set input text color */
+     border-color: #5cb85c; /* Green color for border */
+}
+
+     .form-control:focus {
+          outline: none;
+          border-color: #5cb85c; /* Green color for focus */
+     }
+
+.help-block {
+     display: block;
+     margin-top: 5px;
+     color: #888;
+}
+
+/* Button styles */
+.btn-accent {
+     display: block;
+     width: 100%;
+     padding: 10px;
+     background-color: #668778; /* Spotify green */
+     color: #fff;
+     border: none;
+     border-radius: 3px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+     margin-bottom: 20px; /* Added margin below the button */
+}
+
+     .btn-accent:hover {
+          background-color: #168f3e; /* Darker green on hover */
+     }
+
+.nav-link-SignUp {
+     display: block;
+     text-align: center;
+     color: white; /* White color for the link */
+     text-decoration: underline; /* Underline style */
+     margin-top: 20px; /* Increased margin between Login button and SignUp link */
+}
+/*///////////////////////////////////////////// Playlists Details /////////////////////////////////////////////////////////*/
+.music-list {
+     list-style-type: none;
+     padding-left: 0;
+}
+
+.music-item {
+     display: flex;
+     align-items: center;
+     padding: 10px;
+     border-bottom: 1px solid #ccc;
+}
+
+     .music-item img {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          margin-right: 20px;
+     }
+
+.music-details {
+     flex-grow: 1;
+}
+
+.audio-controls {
+     margin-left: auto;
+}
+
+.audio-player {
+     width: 100%;
+}

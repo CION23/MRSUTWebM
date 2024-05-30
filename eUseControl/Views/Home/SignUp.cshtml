@@ -1,0 +1,111 @@
+﻿@model eUseControl.Models.UserSignUp
+
+@{
+     ViewBag.Title = "SignUp";
+     Layout = "~/Views/Shared/_LayoutAuthentification.cshtml";
+}
+
+<main>
+     <div class="container-center animated slideInDown">
+          <div class="view-header">
+               <div class="header-title">
+                    <h2 class="SignUpText">Sign Up to MSphere</h2>
+               </div>
+          </div>
+
+          <div class="panel panel-filled">
+               <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                         @Html.AntiForgeryToken()
+                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                         <div class="form-group">
+                              @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+                              @Html.TextBoxFor(model => model.FirstName, new
+                              {
+                                  @class = "form-control"
+                              })
+                              <span class="help-block small">Your first name</span>
+                              @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                         </div>
+
+                         <div class="form-group">
+                              @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+                              @Html.TextBoxFor(model => model.LastName, new
+                              {
+                                  @class = "form-control"
+                              })
+                              <span class="help-block small">Your last name</span>
+                              @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                         </div>
+
+                         <div class="form-group">
+                              @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+                              @Html.TextBoxFor(model => model.UserName, new
+                              {
+                                  @class = "form-control"
+                              })
+                              <span class="help-block small">Your unique username</span>
+                              @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                         </div>
+
+                         <div class="form-group">
+                              @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label" })
+                              @Html.TextBoxFor(model => model.EmailAddress, new
+                              {
+                                  @class = "form-control",
+                                  placeholder = "Example@gmail.com",
+                              })
+                              <span class="help-block small">Your email</span>
+                              @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                         </div>
+
+                         <div class="form-group">
+                              @Html.LabelFor(model => model.ConfirmEmailAddress, htmlAttributes: new { @class = "control-label" })
+                              @Html.TextBoxFor(model => model.ConfirmEmailAddress, new
+                              {
+                                  @class = "form-control",
+                                  placeholder = "Example@gmail.com"
+                              })
+                              <span class="help-block small">Repeat your email</span>
+                              @Html.ValidationMessageFor(model => model.ConfirmEmailAddress, "", new { @class = "text-danger" })
+                         </div>
+
+                         <div class="form-group">
+                              @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+                              <div class="input-group">
+                                   @Html.PasswordFor(model => model.Password, new
+                                   {
+                                       @class = "form-control",
+                                       placeholder = "******"
+                                   })
+                              </div>
+                              <span class="help-block small">Enter your password</span>
+                              @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                         </div>
+
+                         <div class="form-group">
+                              @Html.LabelFor(model => model.ConfirmPassword, new { @class = "control-label" })
+                              @Html.PasswordFor(model => model.ConfirmPassword, new
+                              {
+                                  @class = "form-control",
+                                  placeholder = "******"
+                              })
+                              <span class="help-block small">Repeat password</span>
+                              @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                         </div>
+
+                         <div class="form-group">
+                              <input type="submit" value="Create" class="btn btn-default" />
+                         </div>
+                         <div>
+                              <a class="nav-link-SignUp" href="@Url.Action("LogIn","LogIn")">Log In</a>
+                         </div>
+                    }
+               </div>
+          </div>
+     </div>
+</main>
+
+

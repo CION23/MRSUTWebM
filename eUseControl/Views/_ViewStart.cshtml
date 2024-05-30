@@ -1,0 +1,13 @@
+﻿@{
+     bool isAdmin = System.Web.HttpContext.Current.Session["UserRole"] != null &&
+                    System.Web.HttpContext.Current.Session["UserRole"].ToString() == "Admin";
+}
+
+@if (isAdmin)
+{
+     Layout = "~/Views/Shared/_LayoutAView.cshtml";
+}
+else
+{
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
