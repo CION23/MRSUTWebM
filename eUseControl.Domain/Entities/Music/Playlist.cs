@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eUseControl.Domain.Entities.User;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,5 +21,7 @@ namespace eUseControl.Domain.Entities.Music
           public int DailyListenCount { get; set; }
           public int WeeklyListenCount { get; set; }
           public int MonthlyListenCount { get; set; }
+          public int UserSignUpId { get; set; }
+          public UserSignUp UserSignUp { get; set; }
      }
 }

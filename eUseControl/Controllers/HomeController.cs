@@ -43,7 +43,6 @@ namespace eUseControl.Controllers
                          Username = user.Username,
                     };
 
-                    // Fetch music data in random order and limit to 123 items
                     var musicList = _musiccontext.Musics
                                                  .Include("Genres")
                                                  .Include("UserSignUp")
@@ -67,7 +66,6 @@ namespace eUseControl.Controllers
                }
                else
                {
-                    // Fetch music data in random order and limit to 123 items
                     var musicList = _musiccontext.Musics
                                                  .Include("Genres")
                                                  .Include("UserSignUp")
@@ -216,7 +214,7 @@ namespace eUseControl.Controllers
                                    ipAddress = Request.ServerVariables["REMOTE_ADDR"];
                               }
 
-                              Mapper.Initialize(cfg => cfg.CreateMap<eUseControl.Models.UserSignUp, eUseControl.Domain.Entities.User.UserSignUp > ());
+                              Mapper.Initialize(cfg => cfg.CreateMap<eUseControl.Models.UserSignUp, eUseControl.Domain.Entities.User.UserSignUp>());
 
                               UserContext.CreateUser(model.FirstName, model.LastName, model.UserName, model.EmailAddress, model.Password, ipAddress);
                               return RedirectToAction("Home", "Home");
@@ -282,5 +280,228 @@ namespace eUseControl.Controllers
                }
 
           }
-    }
+
+          [Admin]
+          public ActionResult CreatePlaylist(Playlists playlist, int[] musicIds)
+          {
+               if (ModelState.IsValid)
+               {
+                    if (musicIds != null && musicIds.Length > 0)
+                    {
+                         // Populate the playlist object with the submitted data
+                         playlist.Musics = _musiccontext.Musics.Where(m => musicIds.Contains(m.MusicId)).ToList();
+
+                         _musiccontext.Playlists.Add(playlist);
+                         _musiccontext.SaveChanges();
+
+                         return RedirectToAction("CreatePlaylist");
+                    }
+                    else
+                    {
+                         ModelState.AddModelError("", "Please select at least one music.");
+                    }
+               }
+
+               ViewBag.Genres = _musiccontext.Genres.ToList();
+               ViewBag.Musics = _musiccontext.Musics.ToList();
+               return View(playlist);
+          }
+
+
+          public ActionResult Playlist()
+          {
+               ViewBag.Genres = _musiccontext.Genres.ToList();
+               ViewBag.Musics = _musiccontext.Musics.ToList(); // Fetch all available music
+               var playlists = _musiccontext.Playlists.Include(p => p.Musics).ToList(); // Include Musics for each Playlist
+               return View(playlists); // Pass the list of playlists to the view
+          }
+
+
+          public ActionResult PlaylistDetails(int id)
+          {
+               var playlist = _musiccontext.Playlists
+                                           .Include(p => p.Musics.Select(m => m.UserSignUp)) // Include associated artists
+                                           .FirstOrDefault(p => p.PlaylistId == id);
+
+               if (playlist == null)
+               {
+                    return HttpNotFound();
+               }
+
+
+               var musicList = playlist.Musics.Select(m =>
+               {
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
+                    m.UserSignUp = artist;
+                    return m;
+               }).ToList();
+
+               ViewBag.MusicList = musicList;
+
+               return View("PlaylistDetails", playlist); // Pass the playlist to the view
+          }
+
+          public ActionResult NewMusic()
+          {
+               var newestMusics = _musiccontext.Musics
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .OrderByDescending(m => m.Created)
+                   .ToList();
+
+               var musicList = newestMusics.Select(m =>
+               {
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
+                    m.UserSignUp = artist;
+                    return m;
+               }).ToList();
+
+               ViewBag.MusicList = musicList;
+               return View();
+          }
+
+          public ActionResult MostPlayed()
+          {
+               // Get the newest musics with related genres and users
+               var newestMusics = _musiccontext.Musics
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .OrderByDescending(m => m.Created)
+                   .ToList();
+
+               var musicList = newestMusics.Select(m =>
+               {
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
+                    m.UserSignUp = artist;
+                    return m;
+               }).ToList();
+
+               ViewBag.MusicList = musicList;
+
+               // Fetch most played music for each period
+               var mostPlayedDaily = _musiccontext.Musics
+                   .OrderByDescending(m => m.DailyListenCount)
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .Take(10)
+                   .ToList();
+
+               var mostPlayedWeekly = _musiccontext.Musics
+                   .OrderByDescending(m => m.WeeklyListenCount)
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .Take(10)
+                   .ToList();
+
+               var mostPlayedMonthly = _musiccontext.Musics
+                   .OrderByDescending(m => m.MonthlyListenCount)
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .Take(10)
+                   .ToList();
+
+               // Create a ViewModel to pass all the data
+               var viewModel = new MostPlayedViewModel
+               {
+                    Daily = mostPlayedDaily,
+                    Weekly = mostPlayedWeekly,
+                    Monthly = mostPlayedMonthly
+               };
+
+               return View(viewModel);
+          }
+
+          public void IncrementListenCount(int musicId)
+          {
+               var music = _musiccontext.Musics.Find(musicId); // Use 'this' to refer to the current context
+               if (music != null)
+               {
+                    var now = DateTime.Now;
+
+                    // Reset counts if needed
+                    if ((now - music.LastPlayedTime).TotalDays >= 1)
+                    {
+                         music.DailyListenCount = 0;
+                    }
+                    if ((now - music.LastPlayedTime).TotalDays >= 7)
+                    {
+                         music.WeeklyListenCount = 0;
+                    }
+                    if ((now - music.LastPlayedTime).TotalDays >= 30)
+                    {
+                         music.MonthlyListenCount = 0;
+                    }
+
+                    // Increment counts
+                    music.DailyListenCount++;
+                    music.WeeklyListenCount++;
+                    music.MonthlyListenCount++;
+
+                    // Update last played time
+                    music.LastPlayedTime = now;
+
+                    _musiccontext.SaveChanges();
+               }
+          }
+
+          public ActionResult ArtistProfile()
+          {
+               // Get the username from the session
+               string username = (string)System.Web.HttpContext.Current.Session["UserName"];
+
+               // Fetch the user from the UserContext based on the username
+               var user = _context.Users.FirstOrDefault(u => u.UserName == username);
+
+               if (user != null && string.IsNullOrEmpty(user.ArtistName))
+               {
+                    // Artist name is null or empty, redirect to CreateArtistProfile
+                    return RedirectToAction("CreateArtistProfile", "Home");
+               }
+
+               // Fetch the music list for the current user based on their ArtistName
+               var musicList = _musiccontext.Musics
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .Where(m => m.UserSignUp.UserName == username) // Filter by the current user's username
+                   .OrderByDescending(m => m.Created)
+                   .ToList();
+
+               return View(musicList);
+          }
+
+
+          public ActionResult CreateArtistProfile()
+          {
+               if (System.Web.HttpContext.Current.Session["UserName"] != null)
+               {
+                    return View();
+               }
+
+               return RedirectToAction("Login", "Login");
+          }
+
+          [HttpPost]
+          [ValidateAntiForgeryToken]
+          public ActionResult CreateArtistProfile(UserSignUp model)
+          {
+               if (ModelState.IsValid)
+               {
+                    string username = (string)System.Web.HttpContext.Current.Session["UserName"];
+
+                    var user = _context.Users.FirstOrDefault(u => u.UserName == username);
+                    if (user != null)
+                    {
+                         user.ArtistName = model.ArtistName;
+                         user.Role = URole.Artist;
+                         _context.SaveChanges();
+                    }
+
+                    return RedirectToAction("ArtistProfile", "Home");
+               }
+
+               return View(model);
+          }
+
+
+     }
 }

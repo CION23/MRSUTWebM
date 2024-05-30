@@ -1,0 +1,109 @@
+﻿@model eUseControl.Models.MostPlayedViewModel
+
+@{
+     ViewBag.Title = "Most Played Music";
+}
+
+<body id="content">
+     <div class="container">
+          <h2>Most Played Daily</h2>
+          <button class="toggle-button" data-target="daily">Toggle Daily</button>
+          <div class="row" id="daily" style="display: block;">
+               @foreach (var music in Model.Daily)
+               {
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                         <div class="card position-relative">
+                              <img src="@music.ImagePath" class="card-img-top" alt="Music Image" style="height: 100%; object-fit: cover;">
+                              <div class="card-body cool-background-color">
+                                   <h5 class="card-title">@music.Title</h5>
+                                   <p class="card-text">@music.Description</p>
+                                   <p class="card-text artist">Artist: @music.UserSignUp.ArtistName</p>
+                                   <div class="genres">
+                                        @foreach (var genre in music.Genres)
+                                        {
+                                             <span class="badge badge-secondary">@genre.Name</span>
+                                        }
+                                   </div>
+                                   <div class="audio-controls position-absolute" style="bottom: 10px; right: 10px;">
+                                        <button class="btn btn-primary play-button" data-src="@music.FilePath">
+                                             <i class="fas fa-play"></i>
+                                        </button>
+                                        <audio class="audio-player" controls>
+                                             <source src="@music.FilePath" type="audio/mp3">
+                                             Your browser does not support the audio element.
+                                        </audio>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               }
+          </div>
+     </div>
+
+     <h2>Most Played Weekly</h2>
+     <button class="toggle-button" data-target="weekly">Toggle Weekly</button>
+     <div class="row" id="weekly" style="display: none;">
+          @foreach (var music in Model.Weekly)
+          {
+               <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                    <div class="card position-relative">
+                         <img src="@music.ImagePath" class="card-img-top" alt="Music Image" style="height: 100%; object-fit: cover;">
+                         <div class="card-body cool-background-color">
+                              <h5 class="card-title">@music.Title</h5>
+                              <p class="card-text">@music.Description</p>
+                              <p class="card-text artist">Artist: @music.UserSignUp.ArtistName</p>
+                              <div class="genres">
+                                   @foreach (var genre in music.Genres)
+                                   {
+                                        <span class="badge badge-secondary">@genre.Name</span>
+                                   }
+                              </div>
+                              <div class="audio-controls position-absolute" style="bottom: 10px; right: 10px;">
+                                   <button class="btn btn-primary play-button" data-src="@music.FilePath">
+                                        <i class="fas fa-play"></i>
+                                   </button>
+                                   <audio class="audio-player" controls>
+                                        <source src="@music.FilePath" type="audio/mp3">
+                                        Your browser does not support the audio element.
+                                   </audio>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          }
+     </div>
+
+     <h2>Most Played Monthly</h2>
+     <button class="toggle-button" data-target="monthly">Toggle Monthly</button>
+     <div class="row" id="monthly" style="display: none;">
+          @foreach (var music in Model.Monthly)
+          {
+               <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                    <div class="card position-relative">
+                         <img src="@music.ImagePath" class="card-img-top" alt="Music Image" style="height: 100%; object-fit: cover;">
+                         <div class="card-body cool-background-color">
+                              <h5 class="card-title">@music.Title</h5>
+                              <p class="card-text">@music.Description</p>
+                              <p class="card-text artist">Artist: @music.UserSignUp.ArtistName</p>
+                              <div class="genres">
+                                   @foreach (var genre in music.Genres)
+                                   {
+                                        <span class="badge badge-secondary">@genre.Name</span>
+                                   }
+                              </div>
+                              <div class="audio-controls position-absolute" style="bottom: 10px; right: 10px;">
+                                   <button class="btn btn-primary play-button" data-src="@music.FilePath">
+                                        <i class="fas fa-play"></i>
+                                   </button>
+                                   <audio class="audio-player" controls>
+                                        <source src="@music.FilePath" type="audio/mp3">
+                                        Your browser does not support the audio element.
+                                   </audio>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          }
+     </div>
+</body>
+

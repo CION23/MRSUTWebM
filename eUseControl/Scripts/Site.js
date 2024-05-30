@@ -167,3 +167,45 @@ $(document).ready(function () {
           }
      });
 });
+
+//////////////////////////////////////////////////////////Most wathced button //////////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
+     const buttons = document.querySelectorAll('.toggle-button');
+     buttons.forEach(button => {
+          button.addEventListener('click', () => {
+               console.log('Button clicked'); // Add this line for debugging
+               const target = button.getAttribute('data-target');
+               const section = document.getElementById(target);
+               if (section.style.display === 'none') {
+                    section.style.display = 'block';
+               } else {
+                    section.style.display = 'none';
+               }
+          });
+     });
+});
+
+//////////////////////////////////////////////////////////Increment for Most Watched//////////////////////////////////////////////////////////////
+var isPlaying = false; // Flag to track play state
+var musicId = null; // Variable to store the currently playing music ID
+
+function playMusic(clickedMusicId) {
+     if (!isPlaying || musicId !== clickedMusicId) {
+          // Increment listen count only if not already playing or if the clicked music is different
+          $.ajax({
+               type: "POST",
+               url: "/Home/IncrementListenCount",
+               data: { musicId: clickedMusicId },
+               success: function () {
+                    // Incremented listen count successfully
+                    musicId = clickedMusicId; // Update currently playing music ID
+                    isPlaying = true; // Set play state to true
+               },
+               error: function () {
+                    // Error incrementing listen count
+               }
+          });
+     } else {
+          isPlaying = false; // Set play state to false on pause
+     }
+}

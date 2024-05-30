@@ -326,6 +326,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MostPlayedViewModel.cs" />
     <Compile Include="Models\MusicViewModel.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\UserLogin.cs" />
@@ -368,6 +369,13 @@
     <Content Include="Views\Shared\_SearchResults.cshtml" />
     <Content Include="Views\Home\Genres.cshtml" />
     <Content Include="Views\Home\MusicByGenre.cshtml" />
+    <Content Include="Views\Home\PlaylistDetails.cshtml" />
+    <Content Include="Views\Home\Playlist.cshtml" />
+    <Content Include="Views\Home\CreatePlaylist.cshtml" />
+    <Content Include="Views\Home\NewMusic.cshtml" />
+    <Content Include="Views\Home\MostPlayed.cshtml" />
+    <Content Include="Views\Home\ArtistProfile.cshtml" />
+    <Content Include="Views\Home\CreateArtistProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

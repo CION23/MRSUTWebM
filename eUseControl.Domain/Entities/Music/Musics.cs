@@ -29,6 +29,7 @@ namespace eUseControl.Domain.Entities.Music
           public string Description { get; set; }
           public ICollection<Playlists> Playlists { get; set; }
           public ICollection<Genres> Genres { get; set; }
+          public DateTime LastPlayedTime { get; set; }
           public int DailyListenCount { get; set; }
           public int WeeklyListenCount { get; set; }
           public int MonthlyListenCount { get; set; }

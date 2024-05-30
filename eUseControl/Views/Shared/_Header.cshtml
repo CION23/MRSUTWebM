@@ -20,7 +20,13 @@
                               <a class="nav-link" href="@Url.Action("Genres", "Home")"><i class=""></i>Genres</a>
                          </li>
                          <li id="search-link" class="nav-item">
-                              <a class="nav-link" href="@Url.Action("ListMusic", "Music")"><i class=""></i>Music</a>
+                              <a class="nav-link" href="@Url.Action("Playlist", "Home")"><i class=""></i>Playlists</a>
+                         </li>
+                         <li id="search-link" class="nav-item">
+                              <a class="nav-link" href="@Url.Action("MostPlayed", "Home")"><i class=""></i>Top Music</a>
+                         </li>
+                         <li id="search-link" class="nav-item">
+                              <a class="nav-link" href="@Url.Action("NewMusic", "Home")"><i class=""></i>New Music</a>
                          </li>
                     </ul>
                </div>
@@ -43,6 +49,8 @@
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                    <div class="dropdown-divider"></div>
                                    <a class="dropdown-item" href="#">Profile</a>
+                                   <div class="dropdown-divider"></div>
+                                   <a class="dropdown-item" href="@Url.Action("ArtistProfile", "Home")">Artist profile</a>
                                    <div class="dropdown-divider"></div>
                                    <a class="dropdown-item" href="#">Settings</a>
                                    <div class="dropdown-divider"></div>

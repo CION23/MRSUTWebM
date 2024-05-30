@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using eUseControl.Attributes;
 using eUseControl.BusinessLogic.DBModel;
 using eUseControl.Domain.Entities.Music;
 using eUseControl.Models;
@@ -20,6 +21,8 @@ namespace eUseControl.Web.Controllers
           {
                _context = new MusicContext();
           }
+
+          [Admin]
           public ActionResult ListMusic()
           {
                using (var userContext = new UserContext())
@@ -44,6 +47,7 @@ namespace eUseControl.Web.Controllers
                }
           }
 
+          [Admin]
           [HttpPost]
           public ActionResult AddMusic(string title, int genresId, string artistName, string description, HttpPostedFileBase musicFile, HttpPostedFileBase imageFile)
           {
@@ -122,7 +126,7 @@ namespace eUseControl.Web.Controllers
                }
           }
 
-
+          [Admin]
           [HttpPost]
           public ActionResult ModifyMusic(int musicId, string title, string musicName, string imageName, int genreId, int artistId, int albumId, string description)
           {
@@ -134,7 +138,7 @@ namespace eUseControl.Web.Controllers
                return RedirectToAction("Index", "Home");
           }
 
-
+          [Admin]
           [HttpPost]
           public ActionResult DeleteMusic(int musicId)
           {
