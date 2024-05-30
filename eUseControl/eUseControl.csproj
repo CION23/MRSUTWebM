@@ -371,6 +371,7 @@
     <Content Include="Views\Home\PlaylistDetails.cshtml" />
     <Content Include="Views\Home\Playlist.cshtml" />
     <Content Include="Views\Home\CreatePlaylist.cshtml" />
+    <Content Include="Views\Home\NewMusic.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

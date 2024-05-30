@@ -304,8 +304,8 @@ namespace eUseControl.Controllers
                }
 
                ViewBag.Genres = _musiccontext.Genres.ToList();
-               ViewBag.Musics = _musiccontext.Musics.ToList(); // Fetch all available music
-               return View(playlist); // Return the same view with validation errors if any
+               ViewBag.Musics = _musiccontext.Musics.ToList();
+               return View(playlist);
           }
 
 
@@ -326,7 +326,7 @@ namespace eUseControl.Controllers
 
                if (playlist == null)
                {
-                    return HttpNotFound(); // Handle playlist not found
+                    return HttpNotFound();
                }
 
 
@@ -340,6 +340,25 @@ namespace eUseControl.Controllers
                ViewBag.MusicList = musicList;
 
                return View("PlaylistDetails", playlist); // Pass the playlist to the view
+          }
+
+          public ActionResult NewMusic()
+          {
+               var newestMusics = _musiccontext.Musics
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .OrderByDescending(m => m.Created)
+                   .ToList();
+
+               var musicList = newestMusics.Select(m =>
+               {
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
+                    m.UserSignUp = artist;
+                    return m;
+               }).ToList();
+
+               ViewBag.MusicList = musicList;
+               return View();
           }
 
      }

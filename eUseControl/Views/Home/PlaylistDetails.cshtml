@@ -7,10 +7,16 @@
 
 <body id="content">
      <div class="container">
-          <h2>@Model.Name</h2>
-          <p>@Model.Description</p>
+          <div class="row">
+               <div class="col-md-6">
+                    <h2>@Model.Name</h2>
+                    <p>@Model.Description</p>
+               </div>
+               <div class="col-md-6 text-right">
+                    <a href="@Url.Action("Playlist", "Home")" class="btn btn-secondary">Back</a>
+               </div>
+          </div>
 
-          <h3>Associated Music</h3>
           <ul class="music-list">
                @foreach (var music in Model.Musics)
                {
