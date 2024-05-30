@@ -43,7 +43,6 @@ namespace eUseControl.Controllers
                          Username = user.Username,
                     };
 
-                    // Fetch music data in random order and limit to 123 items
                     var musicList = _musiccontext.Musics
                                                  .Include("Genres")
                                                  .Include("UserSignUp")
@@ -67,7 +66,6 @@ namespace eUseControl.Controllers
                }
                else
                {
-                    // Fetch music data in random order and limit to 123 items
                     var musicList = _musiccontext.Musics
                                                  .Include("Genres")
                                                  .Include("UserSignUp")
@@ -361,5 +359,88 @@ namespace eUseControl.Controllers
                return View();
           }
 
+          public ActionResult MostPlayed()
+          {
+               // Get the newest musics with related genres and users
+               var newestMusics = _musiccontext.Musics
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .OrderByDescending(m => m.Created)
+                   .ToList();
+
+               var musicList = newestMusics.Select(m =>
+               {
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
+                    m.UserSignUp = artist;
+                    return m;
+               }).ToList();
+
+               ViewBag.MusicList = musicList;
+
+               // Fetch most played music for each period
+               var mostPlayedDaily = _musiccontext.Musics
+                   .OrderByDescending(m => m.DailyListenCount)
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .Take(10)
+                   .ToList();
+
+               var mostPlayedWeekly = _musiccontext.Musics
+                   .OrderByDescending(m => m.WeeklyListenCount)
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .Take(10)
+                   .ToList();
+
+               var mostPlayedMonthly = _musiccontext.Musics
+                   .OrderByDescending(m => m.MonthlyListenCount)
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .Take(10)
+                   .ToList();
+
+               // Create a ViewModel to pass all the data
+               var viewModel = new MostPlayedViewModel
+               {
+                    Daily = mostPlayedDaily,
+                    Weekly = mostPlayedWeekly,
+                    Monthly = mostPlayedMonthly
+               };
+
+               return View(viewModel);
+          }
+
+          public void IncrementListenCount(int musicId)
+          {
+               var music = _musiccontext.Musics.Find(musicId); // Use 'this' to refer to the current context
+               if (music != null)
+               {
+                    var now = DateTime.Now;
+
+                    // Reset counts if needed
+                    if ((now - music.LastPlayedTime).TotalDays >= 1)
+                    {
+                         music.DailyListenCount = 0;
+                    }
+                    if ((now - music.LastPlayedTime).TotalDays >= 7)
+                    {
+                         music.WeeklyListenCount = 0;
+                    }
+                    if ((now - music.LastPlayedTime).TotalDays >= 30)
+                    {
+                         music.MonthlyListenCount = 0;
+                    }
+
+                    // Increment counts
+                    music.DailyListenCount++;
+                    music.WeeklyListenCount++;
+                    music.MonthlyListenCount++;
+
+                    // Update last played time
+                    music.LastPlayedTime = now;
+
+                    _musiccontext.SaveChanges();
+               }
+          }
      }
 }

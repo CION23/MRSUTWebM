@@ -119,6 +119,33 @@ namespace eUseControl.BusinessLogic.DBModel
                return TimeSpan.FromMinutes(5);
           }
 
+          public List<Musics> GetMostPlayedDaily()
+          {
+               var now = DateTime.Now;
+               return this.Musics
+                   .Where(m => (now - m.LastPlayedTime).TotalDays < 1)
+                   .OrderByDescending(m => m.DailyListenCount)
+                   .ToList();
+          }
+
+          public List<Musics> GetMostPlayedWeekly()
+          {
+               var now = DateTime.Now;
+               return this.Musics
+                   .Where(m => (now - m.LastPlayedTime).TotalDays < 7)
+                   .OrderByDescending(m => m.WeeklyListenCount)
+                   .ToList();
+          }
+
+          public List<Musics> GetMostPlayedMonthly()
+          {
+               var now = DateTime.Now;
+               return this.Musics
+                   .Where(m => (now - m.LastPlayedTime).TotalDays < 30)
+                   .OrderByDescending(m => m.MonthlyListenCount)
+                   .ToList();
+          }
+
 
 
      }
