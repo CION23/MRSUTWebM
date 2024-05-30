@@ -281,6 +281,7 @@ namespace eUseControl.Controllers
 
           }
 
+          [Admin]
           public ActionResult CreatePlaylist(Playlists playlist, int[] musicIds)
           {
                if (ModelState.IsValid)
