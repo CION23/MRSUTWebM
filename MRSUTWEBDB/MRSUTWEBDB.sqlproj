@@ -61,9 +61,7 @@
     <Folder Include="Query" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\UserSignup.sql" />
     <Build Include="Query\SQLQuery.sql" />
-    <Build Include="dbo\Tables\ULoginData.sql" />
     <Build Include="dbo\Tables\URoleData.sql" />
   </ItemGroup>
 </Project>

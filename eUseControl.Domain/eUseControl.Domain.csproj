@@ -51,9 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\User\UDbTable.cs" />
-    <Compile Include="Entities\User\ULoginData.cs" />
+    <Compile Include="Entities\Music\Genres.cs" />
+    <Compile Include="Entities\Music\Musics.cs" />
+    <Compile Include="Entities\Music\Playlist.cs" />
+    <Compile Include="Entities\User\Session.cs" />
+    <Compile Include="Entities\User\UserLoginData.cs" />
     <Compile Include="Entities\User\ULoginResp.cs" />
+    <Compile Include="Entities\User\UserMinimal.cs" />
+    <Compile Include="Entities\User\UserSignUp.cs" />
     <Compile Include="Enums\Urole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

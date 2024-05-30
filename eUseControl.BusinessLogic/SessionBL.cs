@@ -6,16 +6,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
+using eUseControl.BusinessLogic.DBModel;
+using eUseControl.Helpers;
 
 namespace eUseControl.BusinessLogic
 {
      public class SessionBL : UserApi, ISession
      {
-          public ULoginResp UserLogin(ULoginData data)
+          public ULoginResp UserLogin(UserLoginData data)
           {
                return UserLoginAction(data);
           }
-          /*public HttpCookie GenCookie(string loginCredential)
+          public HttpCookie GenCookie(string loginCredential)
           {
                return Cookie(loginCredential);
           }
@@ -23,6 +29,6 @@ namespace eUseControl.BusinessLogic
           public UserMinimal GetUserByCookie(string apiCookieValue)
           {
                return UserCookie(apiCookieValue);
-          }*/
+          }
      }
 }

@@ -1,0 +1,116 @@
+﻿@model List<eUseControl.Domain.Entities.Music.Musics>
+
+<body id="content">
+     <h2>List of Musics</h2>
+     <table class="table">
+          <thead>
+               <tr>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Music</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Genres</th>
+               </tr>
+          </thead>
+          <tbody>
+               @foreach (var music in Model)
+               {
+                    <tr>
+                         <td>@music.Title</td>
+                         <td>@music.UserSignUp.ArtistName</td>
+                         <td>
+                              <audio controls>
+                                   <source src="@music.FilePath" type="audio/mp3">
+                                   Your browser does not support the audio element.
+                              </audio>
+                              <div style="margin-top: 10px;">@music.FilePath</div>
+                         </td>
+                         <td>
+                              <img src="@music.ImagePath" alt="Music Image" style="max-width: 100px; max-height: 100px;">
+                              <div style="margin-top: 10px;">@music.ImagePath</div>
+                         </td>
+                         <td>@music.Description</td>
+                         <td>
+                              @foreach (var genre in music.Genres)
+                              {
+                                   <span>@genre.Name</span>
+                              }
+                         </td>
+                    </tr>
+               }
+          </tbody>
+     </table>
+
+
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMusicModal">
+          Add Music
+     </button>
+
+     <div class="modal fade dark-modal" id="addMusicModal" tabindex="-1" role="dialog" aria-labelledby="addMusicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+               <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                         <h5 class="modal-title" id="addMusicModalLabel">Add Music</h5>
+                         <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+                    <div class="modal-body">
+                         <form id="addMusicForm" method="post" action="@Url.Action("AddMusic", "Music")" enctype="multipart/form-data">
+                              @Html.AntiForgeryToken()
+
+                              <div class="form-group">
+                                   <label for="title" class="text-light">Title<span class="text-danger">*</span></label>
+                                   <input type="text" class="form-control" id="title" name="title" required>
+                              </div>
+
+                              <div class="form-group">
+                                   <label for="musicFile" class="text-light">Music File (.mp3)<span class="text-danger">*</span></label>
+                                   <input type="file" class="form-control-file" id="musicFile" name="musicFile" accept=".mp3" required>
+                              </div>
+
+                              <div class="form-group">
+                                   <label for="imageFile" class="text-light">Image File<span class="text-danger">*</span></label>
+                                   <input type="file" class="form-control-file" id="imageFile" name="imageFile" accept="image/*" required>
+                              </div>
+
+                              <div class="form-group">
+                                   <label for="genreId" class="text-light">Genre<span class="text-danger">*</span></label>
+                                   <div class="input-group">
+                                        <input type="text" class="form-control" id="genreSearchInput" placeholder="Enter a genre">
+                                   </div>
+                                   @if (ViewBag.Genres != null && ViewBag.Genres.Count > 0)
+                                   {
+                                        <div id="genreList" class="mt-2">
+                                             @foreach (var genre in ViewBag.Genres)
+                                             {
+                                                  <span class="badge badge-primary genre-badge" data-genre-id="@genre.GenreId">@genre.Name</span>
+                                             }
+                                             <input type="hidden" id="selectedGenreId" name="genresId" required>
+                                        </div>
+                                   }
+                                   else
+                                   {
+                                        <p>No genres available.</p>
+                                   }
+                              </div>
+
+                              <div class="form-group">
+                                   <label for="artistName" class="text-light">Artist Name<span class="text-danger">*</span></label>
+                                   <input type="text" class="form-control" id="artistName" name="artistName" required>
+                              </div>
+
+                              <div class="form-group">
+                                   <label for="description" class="text-light">Description</label>
+                                   <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                              </div>
+
+                              <button type="submit" class="btn btn-primary" onclick="setFileNames()">Add</button>
+                         </form>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+</body>

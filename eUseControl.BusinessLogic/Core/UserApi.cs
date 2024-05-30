@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using AutoMapper;
 using eUseControl.BusinessLogic.DBModel;
 using eUseControl.Domain.Entities.User;
 using eUseControl.Helpers;
@@ -11,16 +12,16 @@ namespace eUseControl.BusinessLogic.Core
 {
      public class UserApi
      {
-          internal ULoginResp UserLoginAction(ULoginData data)
+          internal ULoginResp UserLoginAction(UserLoginData data)
           {
-               UDbTable result;
+               UserSignUp result;
                var validate = new EmailAddressAttribute();
                if (validate.IsValid(data.Credential))
                {
-                    var pass = LoginHelper.HashGen(data.Password);
+                    //var pass = LoginHelper.HashGen(data.Password);
                     using (var db = new UserContext())
                     {
-                         result = db.Users.FirstOrDefault(u => u.Email == data.Credential && u.Password == pass);
+                         result = db.Users.FirstOrDefault(u => u.EmailAddress == data.Credential && u.Password == data.Password/*== pass*/);
                     }
 
                     if (result == null)
@@ -30,8 +31,8 @@ namespace eUseControl.BusinessLogic.Core
 
                     using (var todo = new UserContext())
                     {
-                         result.LasIp = data.LoginIp;
-                         result.LastLogin = data.LoginDateTime;
+                         result.LoginIp = data.LoginIp;
+                         result.CreatedOn = data.LoginDateTime;
                          todo.Entry(result).State = EntityState.Modified;
                          todo.SaveChanges();
                     }
@@ -40,10 +41,10 @@ namespace eUseControl.BusinessLogic.Core
                }
                else
                {
-                    var pass = LoginHelper.HashGen(data.Password);
+                    //var pass = LoginHelper.HashGen(data.Password);
                     using (var db = new UserContext())
                     {
-                         result = db.Users.FirstOrDefault(u => u.Username == data.Credential && u.Password == pass);
+                         result = db.Users.FirstOrDefault(u => u.UserName == data.Credential && u.Password == data.Password/*== pass*/);
                     }
 
                     if (result == null)
@@ -53,8 +54,8 @@ namespace eUseControl.BusinessLogic.Core
 
                     using (var todo = new UserContext())
                     {
-                         result.LasIp = data.LoginIp;
-                         result.LastLogin = data.LoginDateTime;
+                         result.LoginIp = data.LoginIp;
+                         result.CreatedOn = data.LoginDateTime;
                          todo.Entry(result).State = EntityState.Modified;
                          todo.SaveChanges();
                     }
@@ -63,7 +64,7 @@ namespace eUseControl.BusinessLogic.Core
                }
           }
 
-          /*internal HttpCookie Cookie(string loginCredential)
+          internal HttpCookie Cookie(string loginCredential)
           {
                var apiCookie = new HttpCookie("X-KEY")
                {
@@ -111,7 +112,7 @@ namespace eUseControl.BusinessLogic.Core
           internal UserMinimal UserCookie(string cookie)
           {
                Session session;
-               UDbTable curentUser;
+               UserSignUp curentUser;
 
                using (var db = new SessionContext())
                {
@@ -124,21 +125,19 @@ namespace eUseControl.BusinessLogic.Core
                     var validate = new EmailAddressAttribute();
                     if (validate.IsValid(session.Username))
                     {
-                         curentUser = db.Users.FirstOrDefault(u => u.Email == session.Username);
+                         curentUser = db.Users.FirstOrDefault(u => u.EmailAddress == session.Username);
                     }
                     else
                     {
-                         curentUser = db.Users.FirstOrDefault(u => u.Username == session.Username);
+                         curentUser = db.Users.FirstOrDefault(u => u.UserName == session.Username);
                     }
                }
 
                if (curentUser == null) return null;
-               Mapper.Initialize(cfg => cfg.CreateMap<UDbTable, UserMinimal>());
+               Mapper.Initialize(cfg => cfg.CreateMap<UserSignUp, UserMinimal>());
                var userminimal = Mapper.Map<UserMinimal>(curentUser);
 
                return userminimal;
-          }*/
-
-
+          }
      }
 }

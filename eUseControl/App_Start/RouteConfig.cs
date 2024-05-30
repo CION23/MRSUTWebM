@@ -18,6 +18,14 @@ namespace eUseControl
                    url: "{controller}/{action}/{id}",
                    defaults: new { controller = "Home", action = "Home", id = UrlParameter.Optional }
                ) ;
-        }
-    }
+
+               routes.MapRoute(
+                   name: "HomeSearch",
+                   url: "Home/Search",
+                   defaults: new { controller = "Home", action = "Search" }
+               );
+
+
+          }
+     }
 }
