@@ -1,4 +1,10 @@
-﻿$(document).ready(function () {
+﻿
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function () {
      $(document).on('click', function (event) {
           var clickover = $(event.target);
           var opened = $('.navbar-collapse').hasClass('show');

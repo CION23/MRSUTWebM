@@ -376,6 +376,9 @@
     <Content Include="Views\Home\MostPlayed.cshtml" />
     <Content Include="Views\Home\ArtistProfile.cshtml" />
     <Content Include="Views\Home\CreateArtistProfile.cshtml" />
+    <Content Include="Views\Shared\_HeaderProfil.cshtml" />
+    <Content Include="Views\Shared\_LayoutProfil.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

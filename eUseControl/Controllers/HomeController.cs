@@ -502,6 +502,9 @@ namespace eUseControl.Controllers
                return View(model);
           }
 
-
+          public ActionResult UserProfile()
+          {
+               return View();
+          }
      }
 }
