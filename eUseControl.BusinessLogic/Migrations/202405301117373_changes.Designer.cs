@@ -7,13 +7,13 @@ namespace eUseControl.BusinessLogic.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class UserLoginDataId : IMigrationMetadata
+    public sealed partial class changes : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserLoginDataId));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(changes));
         
         string IMigrationMetadata.Id
         {
-            get { return "202405281914087_UserLoginDataId"; }
+            get { return "202405301117373_changes"; }
         }
         
         string IMigrationMetadata.Source

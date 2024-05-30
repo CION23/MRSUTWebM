@@ -282,5 +282,65 @@ namespace eUseControl.Controllers
                }
 
           }
-    }
+
+          public ActionResult CreatePlaylist(Playlists playlist, int[] musicIds)
+          {
+               if (ModelState.IsValid)
+               {
+                    if (musicIds != null && musicIds.Length > 0)
+                    {
+                         // Populate the playlist object with the submitted data
+                         playlist.Musics = _musiccontext.Musics.Where(m => musicIds.Contains(m.MusicId)).ToList();
+
+                         _musiccontext.Playlists.Add(playlist);
+                         _musiccontext.SaveChanges();
+
+                         return RedirectToAction("CreatePlaylist");
+                    }
+                    else
+                    {
+                         ModelState.AddModelError("", "Please select at least one music.");
+                    }
+               }
+
+               ViewBag.Genres = _musiccontext.Genres.ToList();
+               ViewBag.Musics = _musiccontext.Musics.ToList(); // Fetch all available music
+               return View(playlist); // Return the same view with validation errors if any
+          }
+
+
+          public ActionResult Playlist()
+          {
+               ViewBag.Genres = _musiccontext.Genres.ToList();
+               ViewBag.Musics = _musiccontext.Musics.ToList(); // Fetch all available music
+               var playlists = _musiccontext.Playlists.Include(p => p.Musics).ToList(); // Include Musics for each Playlist
+               return View(playlists); // Pass the list of playlists to the view
+          }
+
+
+          public ActionResult PlaylistDetails(int id)
+          {
+               var playlist = _musiccontext.Playlists
+                                           .Include(p => p.Musics.Select(m => m.UserSignUp)) // Include associated artists
+                                           .FirstOrDefault(p => p.PlaylistId == id);
+
+               if (playlist == null)
+               {
+                    return HttpNotFound(); // Handle playlist not found
+               }
+
+
+               var musicList = playlist.Musics.Select(m =>
+               {
+                    var artist = _context.Users.FirstOrDefault(u => u.UserId == m.UserSignUpId);
+                    m.UserSignUp = artist;
+                    return m;
+               }).ToList();
+
+               ViewBag.MusicList = musicList;
+
+               return View("PlaylistDetails", playlist); // Pass the playlist to the view
+          }
+
+     }
 }

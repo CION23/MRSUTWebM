@@ -69,9 +69,9 @@
     <Compile Include="DBModel\SessionContext.cs" />
     <Compile Include="DBModel\UserContext.cs" />
     <Compile Include="Interfaces\ISession.cs" />
-    <Compile Include="Migrations\202405281914087_UserLoginDataId.cs" />
-    <Compile Include="Migrations\202405281914087_UserLoginDataId.Designer.cs">
-      <DependentUpon>202405281914087_UserLoginDataId.cs</DependentUpon>
+    <Compile Include="Migrations\202405301117373_changes.cs" />
+    <Compile Include="Migrations\202405301117373_changes.Designer.cs">
+      <DependentUpon>202405301117373_changes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,8 +98,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202405281914087_UserLoginDataId.resx">
-      <DependentUpon>202405281914087_UserLoginDataId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405301117373_changes.resx">
+      <DependentUpon>202405301117373_changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

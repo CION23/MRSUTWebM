@@ -368,6 +368,9 @@
     <Content Include="Views\Shared\_SearchResults.cshtml" />
     <Content Include="Views\Home\Genres.cshtml" />
     <Content Include="Views\Home\MusicByGenre.cshtml" />
+    <Content Include="Views\Home\PlaylistDetails.cshtml" />
+    <Content Include="Views\Home\Playlist.cshtml" />
+    <Content Include="Views\Home\CreatePlaylist.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
