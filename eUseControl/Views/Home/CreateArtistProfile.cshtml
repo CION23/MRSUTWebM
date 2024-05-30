@@ -1,0 +1,21 @@
+﻿@model eUseControl.Models.UserSignUp
+
+@{
+     ViewBag.Title = "Create Artist Profile";
+}
+<body id="content">
+     <h2>Create Artist Profile</h2>
+
+     @using (Html.BeginForm("CreateArtistProfile", "Home", FormMethod.Post))
+     {
+          @Html.AntiForgeryToken()
+
+          <div class="form-group">
+               @Html.LabelFor(model => model.ArtistName, htmlAttributes: new { @class = "control-label" })
+               @Html.EditorFor(model => model.ArtistName, new { htmlAttributes = new { @class = "form-control" } })
+               @Html.ValidationMessageFor(model => model.ArtistName, "", new { @class = "text-danger" })
+          </div>
+
+          <button type="submit" class="btn btn-primary">Create Profile</button>
+     }
+</body>

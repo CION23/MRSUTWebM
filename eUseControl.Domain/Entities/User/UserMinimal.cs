@@ -11,6 +11,7 @@ namespace eUseControl.Domain.Entities.User
      {
           public int UserId { get; set; }
           public string Username { get; set; }
+          public string ArtistName { get; set; }
           public string EmailAddress { get; set; }
           public DateTime LastLogin { get; set; }
           public string LasIp { get; set; }

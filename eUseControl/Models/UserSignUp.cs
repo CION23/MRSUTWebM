@@ -19,6 +19,7 @@ namespace eUseControl.Models
           [Display(Name = "User Name")]
           [Required(ErrorMessage = "Fill up username")]
           public string UserName { get; set; }
+          public string ArtistName { get; set; }
 
           [Display(Name = "Email Address")]
           [Required(ErrorMessage = "Fill up email address")]

@@ -374,6 +374,8 @@
     <Content Include="Views\Home\CreatePlaylist.cshtml" />
     <Content Include="Views\Home\NewMusic.cshtml" />
     <Content Include="Views\Home\MostPlayed.cshtml" />
+    <Content Include="Views\Home\ArtistProfile.cshtml" />
+    <Content Include="Views\Home\CreateArtistProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

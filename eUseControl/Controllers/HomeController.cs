@@ -214,7 +214,7 @@ namespace eUseControl.Controllers
                                    ipAddress = Request.ServerVariables["REMOTE_ADDR"];
                               }
 
-                              Mapper.Initialize(cfg => cfg.CreateMap<eUseControl.Models.UserSignUp, eUseControl.Domain.Entities.User.UserSignUp > ());
+                              Mapper.Initialize(cfg => cfg.CreateMap<eUseControl.Models.UserSignUp, eUseControl.Domain.Entities.User.UserSignUp>());
 
                               UserContext.CreateUser(model.FirstName, model.LastName, model.UserName, model.EmailAddress, model.Password, ipAddress);
                               return RedirectToAction("Home", "Home");
@@ -443,5 +443,65 @@ namespace eUseControl.Controllers
                     _musiccontext.SaveChanges();
                }
           }
+
+          public ActionResult ArtistProfile()
+          {
+               // Get the username from the session
+               string username = (string)System.Web.HttpContext.Current.Session["UserName"];
+
+               // Fetch the user from the UserContext based on the username
+               var user = _context.Users.FirstOrDefault(u => u.UserName == username);
+
+               if (user != null && string.IsNullOrEmpty(user.ArtistName))
+               {
+                    // Artist name is null or empty, redirect to CreateArtistProfile
+                    return RedirectToAction("CreateArtistProfile", "Home");
+               }
+
+               // Fetch the music list for the current user based on their ArtistName
+               var musicList = _musiccontext.Musics
+                   .Include(m => m.Genres)
+                   .Include(m => m.UserSignUp)
+                   .Where(m => m.UserSignUp.UserName == username) // Filter by the current user's username
+                   .OrderByDescending(m => m.Created)
+                   .ToList();
+
+               return View(musicList);
+          }
+
+
+          public ActionResult CreateArtistProfile()
+          {
+               if (System.Web.HttpContext.Current.Session["UserName"] != null)
+               {
+                    return View();
+               }
+
+               return RedirectToAction("Login", "Login");
+          }
+
+          [HttpPost]
+          [ValidateAntiForgeryToken]
+          public ActionResult CreateArtistProfile(UserSignUp model)
+          {
+               if (ModelState.IsValid)
+               {
+                    string username = (string)System.Web.HttpContext.Current.Session["UserName"];
+
+                    var user = _context.Users.FirstOrDefault(u => u.UserName == username);
+                    if (user != null)
+                    {
+                         user.ArtistName = model.ArtistName;
+                         user.Role = URole.Artist;
+                         _context.SaveChanges();
+                    }
+
+                    return RedirectToAction("ArtistProfile", "Home");
+               }
+
+               return View(model);
+          }
+
+
      }
 }
