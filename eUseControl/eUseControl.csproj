@@ -379,6 +379,12 @@
     <Content Include="Views\Shared\_HeaderProfil.cshtml" />
     <Content Include="Views\Shared\_LayoutProfil.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Shared\_LayoutAboutUs.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\MusicSupport.cshtml" />
+    <Content Include="Views\Shared\_LayoutMusicSupport.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Shared\_LayoutFAQ.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
