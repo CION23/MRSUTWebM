@@ -51,78 +51,70 @@ namespace eUseControl.Web.Controllers
           [HttpPost]
           public ActionResult AddMusic(string title, int genresId, string artistName, string description, HttpPostedFileBase musicFile, HttpPostedFileBase imageFile)
           {
-               try
+               if (musicFile != null && musicFile.ContentLength > 0 && imageFile != null && imageFile.ContentLength > 0)
                {
-                    if (musicFile != null && musicFile.ContentLength > 0 && imageFile != null && imageFile.ContentLength > 0)
+                    string musicFolderPath = Server.MapPath("~/Content/Music");
+                    string imageFolderPath = Server.MapPath("~/Content/Image");
+
+                    if (!Directory.Exists(musicFolderPath))
                     {
-                         string musicFolderPath = Server.MapPath("~/Content/Music");
-                         string imageFolderPath = Server.MapPath("~/Content/Image");
-
-                         if (!Directory.Exists(musicFolderPath))
-                         {
-                              Directory.CreateDirectory(musicFolderPath);
-                         }
-
-                         if (!Directory.Exists(imageFolderPath))
-                         {
-                              Directory.CreateDirectory(imageFolderPath);
-                         }
-
-                         string musicName = Path.GetFileName(musicFile.FileName); // Get the file name
-                         string musicNameFile = Path.Combine(musicFolderPath, musicName); // Combine with folder path
-
-                         string imageName = Path.GetFileName(imageFile.FileName); // Get the file name
-                         string imageNameFile = Path.Combine(imageFolderPath, imageName); // Combine with folder path
-
-                         if (System.IO.File.Exists(musicNameFile))
-                         {
-                              ModelState.AddModelError("", "Music file already exists.");
-                              return View(); // Return to the view with error
-                         }
-
-                         if (System.IO.File.Exists(imageNameFile))
-                         {
-                              ModelState.AddModelError("", "Image file already exists.");
-                              return View(); // Return to the view with error
-                         }
-
-                         musicFile.SaveAs(musicNameFile);
-                         imageFile.SaveAs(imageNameFile);
-
-                         using (var musicContext = new MusicContext())
-                         using (var userContext = new UserContext())
-                         {
-                              var artist = userContext.Users.FirstOrDefault(u => u.ArtistName == artistName);
-
-                              if (artist != null)
-                              {
-                                   // Modify the file paths to store only the relative paths in the database
-                                   string relativeMusicPath = "/Content/Music/" + musicName;
-                                   string relativeImagePath = "/Content/Image/" + imageName;
-
-                                   // Add new music record with relative file paths
-                                   musicContext.AddNewMusic(title, relativeMusicPath, relativeImagePath, genresId, artist.UserId, description);
-                                   musicContext.SaveChanges(); // Ensure the changes are saved
-
-                                   return RedirectToAction("ListMusic", "Music"); // Redirect to the ListMusic action
-                              }
-                              else
-                              {
-                                   ModelState.AddModelError("", "Artist not found.");
-                                   return View(); // Return to the view with error
-                              }
-                         }
+                         Directory.CreateDirectory(musicFolderPath);
                     }
-                    else
+
+                    if (!Directory.Exists(imageFolderPath))
                     {
-                         ModelState.AddModelError("", "Please upload both music and image files.");
+                         Directory.CreateDirectory(imageFolderPath);
+                    }
+
+                    string musicName = Path.GetFileName(musicFile.FileName); // Get the file name
+                    string musicNameFile = Path.Combine(musicFolderPath, musicName); // Combine with folder path
+
+                    string imageName = Path.GetFileName(imageFile.FileName); // Get the file name
+                    string imageNameFile = Path.Combine(imageFolderPath, imageName); // Combine with folder path
+
+                    if (System.IO.File.Exists(musicNameFile))
+                    {
+                         ModelState.AddModelError("", "Music file already exists.");
                          return View(); // Return to the view with error
                     }
+
+                    if (System.IO.File.Exists(imageNameFile))
+                    {
+                         ModelState.AddModelError("", "Image file already exists.");
+                         return View(); // Return to the view with error
+                    }
+
+                    musicFile.SaveAs(musicNameFile);
+                    imageFile.SaveAs(imageNameFile);
+
+                    using (var musicContext = new MusicContext())
+                    using (var userContext = new UserContext())
+                    {
+                         var artist = userContext.Users.FirstOrDefault(u => u.ArtistName == artistName);
+
+                         if (artist != null)
+                         {
+                              // Modify the file paths to store only the relative paths in the database
+                              string relativeMusicPath = "/Content/Music/" + musicName;
+                              string relativeImagePath = "/Content/Image/" + imageName;
+
+                              // Add new music record with relative file paths
+                              musicContext.AddNewMusic(title, relativeMusicPath, relativeImagePath, genresId, artist.UserId, description);
+                              musicContext.SaveChanges(); // Ensure the changes are saved
+
+                              return RedirectToAction("ListMusic", "Music"); // Redirect to the ListMusic action
+                         }
+                         else
+                         {
+                              ModelState.AddModelError("", "Artist not found.");
+                              return View(); // Return to the view with error
+                         }
+                    }
                }
-               catch (Exception ex)
+               else
                {
-                    ModelState.AddModelError("", "Error adding music: " + ex.Message); // Display specific error message
-                    return View(); // Return to the view with error
+                    ModelState.AddModelError("", "");
+                    return View(); // Return to the view with error message
                }
           }
 

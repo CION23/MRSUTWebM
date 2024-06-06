@@ -54,6 +54,7 @@ namespace eUseControl.BusinessLogic.DBModel
                          Created = DateTime.Now,
                          Updated = DateTime.Now,
                          Description = description,
+                         LastPlayedTime = DateTime.Now,
                     };
 
                     newMusic.Genres = new List<Domain.Entities.Music.Genres> { genre };

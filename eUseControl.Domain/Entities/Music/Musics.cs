@@ -22,9 +22,7 @@ namespace eUseControl.Domain.Entities.Music
           public string ImagePath { get; set; }
           [Required]
           public TimeSpan Duration { get; set; }
-          [Required]
           public DateTime Created { get; set; }
-          [Required]
           public DateTime Updated { get; set; }
           public string Description { get; set; }
           public ICollection<Playlists> Playlists { get; set; }

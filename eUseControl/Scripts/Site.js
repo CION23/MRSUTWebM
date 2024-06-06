@@ -72,7 +72,6 @@ $(document).ready(function () {
           }
      });
 });
-
 // Image and Music Name
 function setFileNames() {
      var musicFile = document.getElementById("musicFile");
@@ -88,6 +87,7 @@ function setFileNames() {
      musicNameInput.value = musicFileName;
      imageNameInput.value = imageFileName;
 }
+
 
 ///////////////////////////////////////////////////////// Music Button Home /////////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
